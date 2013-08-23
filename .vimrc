@@ -1,5 +1,5 @@
 " Vundle related material
-set nocompatible
+set nocompatible " vim is better than vi
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
