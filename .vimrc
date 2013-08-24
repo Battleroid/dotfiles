@@ -18,8 +18,11 @@ Bundle 'benmills/vimux'
 " --enable-pythoninterp --enable-rubyinterp --enable-perlinterp --with-features=huge
 
 let g:syntastic_python_checkers = ['flake8']
-" nmap <F9> :SCCompile<cr> " doesn't really work because of GUI
-" nmap <F10> :SCCompileRun<cr>
+
+if !has("gui_running")
+	nmap <F9> :SCCompile<cr> " doesn't really work because of GUI
+	nmap <F10> :SCCompileRun<cr>
+endif
 
 set nu
 filetype plugin on
