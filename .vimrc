@@ -16,7 +16,7 @@ Bundle 'othree/html5.vim'
 Bundle 'dhruvasagar/vim-table-mode'
 Bundle 'Townk/vim-autoclose'
 Bundle 'scrooloose/nerdtree'
-"Bundle 'bling/vim-airline' " airline causes delay
+Bundle 'bling/vim-airline'
 Bundle 'bling/vim-bufferline'
 
 " YCM requires vim 7.3.5xx+! Compile Vim 7.4 instead with options:
