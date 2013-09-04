@@ -1,4 +1,4 @@
-" Vundle related material
+" Vundle
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/vundle/
@@ -16,25 +16,38 @@ Bundle 'othree/html5.vim'
 Bundle 'dhruvasagar/vim-table-mode'
 Bundle 'Townk/vim-autoclose'
 Bundle 'scrooloose/nerdtree'
-Bundle 'bling/vim-airline'
+Bundle 'bling/vim-airline' 
 Bundle 'bling/vim-bufferline'
+Bundle 'tpope/vim-fugitive'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'kien/ctrlp.vim'
+Bundle 'chrisbra/SudoEdit.vim'
+" Bundle 'davidhalter/jedi-vim'
+" Bundle 'Rip-Rip/clang_complete'
+" Bundle 'majutsushi/tagbar'
+" Bundle 'ervandew/supertab'
+" Bundle 'ap/vim-css-color'
+" Bundle 'vim-scripts/Align'
 
-" YCM requires vim 7.3.5xx+! Compile Vim 7.4 instead with options:
-" --enable-pythoninterp --enable-rubyinterp --enable-perlinterp --with-features=huge
+" GUI
+if has("gui_running")
+	set background=dark
+	colorscheme jellybeans
+	set guifont=Terminus\ 11
+	set guioptions-=T
+	set guioptions-=m
+	set guioptions-=r
+	let g:solarized_termcolors=256
+endif
 
 " Interface
-filetype plugin indent on
 syntax on
+filetype plugin indent on
 if !has("gui_running")
-        set t_Co=256
-        set background=dark
-        colors jellybeans
-endif
-if has("gui_running")
-        set guifont=Terminus\ 11
-        set guioptions-=T
-        set guioptions-=m
-        set guioptions-=r
+	set t_Co=256
+	set background=dark
+	colorscheme jellybeans
 endif
 au BufRead,BufNewFile *.txt set ft=sh
 hi TabLineFill ctermfg=NONE ctermbg=233
@@ -43,76 +56,57 @@ hi TabLineSel ctermfg=250 ctermbg=233
 set cursorline
 set more
 set number
-set scrolloff=3
-set showcmd
 set title
-set wildignore=.bak,.pyc,.a,.o,.avi,.mkv,.png,.jpg,.jpeg,.gif,.so
+set showcmd
 set wildmenu
 set wildmode=longest,list
+set wildignore=.bak,.pyc,.o,.a,.avi,.mkv,.jpg,.jpeg,.png,.so,.gif
+set scrolloff=3
 
 " General
 set hidden
-set encoding=utf-8
 set history=1000
-set iskeyword+=_,$,@,%,#
 set laststatus=2
+set iskeyword+=_,$,#,@,%
 set linebreak
-set noshowmode
-set noexrc
-set nowrap
-set numberwidth=5
+set nostartofline
 set shortmess+=I
 set splitbelow
 set splitright
 set ttyfast
-set foldcolumn=0
-set foldmethod=indent
-set foldnestmax=10
-set foldlevelstart=99
-set gdefault
-set incsearch
-set matchtime=2
-set matchpairs+=<:>
-set showmatch
+set lazyredraw
+set nowrap
+set noshowmode
 
 " Files
 set autochdir
 set autoread
 set confirm
-set backspace=indent,eol,start
 set noautowrite
 set updatecount=50
-if has("persistent_undo") && exists("&undodir")
-        set undodir=$HOME/.vim/undo/
-        set undofile
-        set undolevels=500
-        set undoreload=10000
-endif
-set autoindent
-set cinkeys-=0#
+set backupdir=~/.vim/backup,/tmp
+set undofile
+set undodir=~/.vim/undo,/tmp
+
+" Formatting
+set backspace=indent,eol,start
 set ignorecase
-set shiftwidth=2
-set tabstop=2
-set smartcase
-set smarttab
+set autoindent
 set nrformats+=alpha
 set shiftround
-au FileType c,cpp setlocal comments -=:// comments +=f://
+set shiftwidth=2
+set tabstop=2
+set smarttab
+set smartcase
+set cinkeys-=0#
 
-" Keybinds
+" Keys
 let mapleader=","
 noremap <leader>ve :edit $HOME/.vimrc<CR>
 noremap <leader>vs :source $HOME/.vimrc<CR>
 nmap <silent> <leader>w :set invwrap<CR>:set wrap?<CR>
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
-nmap <F9> :SCCompile<cr>
-nmap <F10> :SCCompileRun<cr>
-
-" Buffers
 nnoremap gn :bn<CR>
 nnoremap gN :bn<CR>
 nnoremap gd :bn<CR>
-
-" Plugins
-let g:NERDTreeWinPos = "left"
