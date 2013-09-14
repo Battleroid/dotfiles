@@ -4,36 +4,41 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" Bundles
+" Required
 Bundle 'gmarik/vundle'
+
+" Bundles
+" Bundle 'dhruvasagar/vim-table-mode'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-surround'
-Bundle 'xuhdev/SingleCompile'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'benmills/vimux'
-Bundle 'othree/html5.vim'
-Bundle 'dhruvasagar/vim-table-mode'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'Rip-Rip/clang_complete'
 Bundle 'Townk/vim-autoclose'
-Bundle 'scrooloose/nerdtree'
+Bundle 'ap/vim-css-color'
+Bundle 'benmills/vimux'
 Bundle 'bling/vim-airline' 
 Bundle 'bling/vim-bufferline'
-Bundle 'tpope/vim-fugitive'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'kien/ctrlp.vim'
 Bundle 'chrisbra/SudoEdit.vim'
+Bundle 'ervandew/supertab'
+Bundle 'hail2u/vim-css3-syntax'
+Bundle 'kien/ctrlp.vim'
+Bundle 'majutsushi/tagbar'
+Bundle 'othree/html5.vim'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-surround'
+Bundle 'vim-scripts/Align'
+Bundle 'xuhdev/SingleCompile'
+
+" YouCompleteMe needs 7.3.5xx+, compile with --enable-pythoninterp
+" Bundle 'Valloric/YouCompleteMe'
+
+" jedi-vim requires Python be installed with jedi package installed
 " Bundle 'davidhalter/jedi-vim'
-" Bundle 'Rip-Rip/clang_complete'
-" Bundle 'majutsushi/tagbar'
-" Bundle 'ervandew/supertab'
-" Bundle 'ap/vim-css-color'
-" Bundle 'vim-scripts/Align'
 
 " GUI
 if has("gui_running")
-	set background=dark
-	colorscheme jellybeans
 	set guifont=Terminus\ 11
 	set guioptions-=T
 	set guioptions-=m
@@ -92,6 +97,7 @@ set undodir=~/.vim/undo,/tmp
 set backspace=indent,eol,start
 set ignorecase
 set autoindent
+set smartindent
 set nrformats+=alpha
 set shiftround
 set shiftwidth=2
@@ -110,3 +116,42 @@ vnoremap <Space> zf
 nnoremap gn :bn<CR>
 nnoremap gN :bn<CR>
 nnoremap gd :bn<CR>
+
+" 80 column highlight
+let g:overlength_enabled = 0
+highlight OverLength ctermbg=DarkRed ctermfg=white guibg=#212121
+function! ToggleOverLengthHighlight()
+	if g:overlength_enabled == 0
+		match OverLength /\%80v.*/
+		let g:overlength_enabled = 1
+		echo 'Overlength On'
+	else
+		match
+		let g:overlength_enabled = 0
+		echo 'Overlength Off'
+	endif
+endfunction
+nnoremap <leader>h :call ToggleOverLengthHighlight()<CR>
+
+" Relative numbering toggle
+nnoremap <leader>r :call NumberToggle()<CR>
+function! NumberToggle()
+	if (&relativenumber == 1)
+		set number
+	else
+		set relativenumber
+	endif
+endfunction
+
+" Remove empty lines
+function! DeleteEmptyLines()
+	g/^\_$\n\_^$/d
+endfunction
+nnoremap <leader>ld :call DeleteEmptyLines()<CR>
+
+" Misc
+map <F2> :NERDTreeToggle<CR>
+set pastetoggle=<F3>
+set cc=80 " experimental
+set textwidth=80 " experimental 
+let NERDTreeShowHidden = 1
