@@ -100,8 +100,8 @@ set autoindent
 set smartindent
 set nrformats+=alpha
 set shiftround
-set shiftwidth=2
-set tabstop=2
+set shiftwidth=4
+set tabstop=4
 set smarttab
 set smartcase
 set cinkeys-=0#
@@ -113,9 +113,10 @@ noremap <leader>vs :source $HOME/.vimrc<CR>
 nmap <silent> <leader>w :set invwrap<CR>:set wrap?<CR>
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
-nnoremap gn :bn<CR>
-nnoremap gN :bn<CR>
-nnoremap gd :bn<CR>
+nnoremap gn :bNext<CR>
+nnoremap gN :bprevious<CR>
+nnoremap gd :bdelete<CR>
+nnoremap gf <C-^>
 
 " 80 column highlight
 let g:overlength_enabled = 0
@@ -148,6 +149,10 @@ function! DeleteEmptyLines()
 	g/^\_$\n\_^$/d
 endfunction
 nnoremap <leader>ld :call DeleteEmptyLines()<CR>
+
+" Show tabs
+set listchars=tab:>\ 
+set list
 
 " Misc
 map <F2> :NERDTreeToggle<CR>
