@@ -118,25 +118,9 @@ nnoremap gN :bprevious<CR>
 nnoremap gd :bdelete<CR>
 nnoremap gf <C-^>
 
-" 80 column highlight
-let g:overlength_enabled = 0
-highlight OverLength ctermbg=DarkRed ctermfg=white guibg=#212121
-function! ToggleOverLengthHighlight()
-	if g:overlength_enabled == 0
-		match OverLength /\%79v.*/
-		let g:overlength_enabled = 1
-		echo 'Overlength On'
-	else
-		match
-		let g:overlength_enabled = 0
-		echo 'Overlength Off'
-	endif
-endfunction
-nnoremap <leader>h :call ToggleOverLengthHighlight()<CR>
-
 " Alternative 80 column highlight, no need to toggle
 autocmd BufEnter * highlight OverLength ctermbg=DarkRed ctermfg=white guibg=#212121
-autocmd BufEnter * match OverLength /\%79v.*/
+autocmd BufEnter * match OverLength /\%80v.*/
 
 " Relative numbering toggle
 nnoremap <leader>r :call NumberToggle()<CR>
@@ -147,12 +131,6 @@ function! NumberToggle()
 		set relativenumber
 	endif
 endfunction
-
-" Remove empty lines
-function! DeleteEmptyLines()
-	g/^\_$\n\_^$/d
-endfunction
-nnoremap <leader>ld :call DeleteEmptyLines()<CR>
 
 " Show tabs
 set listchars=tab:>\ 
