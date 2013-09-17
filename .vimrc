@@ -11,7 +11,7 @@ Bundle 'gmarik/vundle'
 " Bundle 'dhruvasagar/vim-table-mode'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'Rip-Rip/clang_complete'
+" Bundle 'Rip-Rip/clang_complete'
 Bundle 'Townk/vim-autoclose'
 Bundle 'ap/vim-css-color'
 Bundle 'benmills/vimux'
@@ -123,7 +123,7 @@ let g:overlength_enabled = 0
 highlight OverLength ctermbg=DarkRed ctermfg=white guibg=#212121
 function! ToggleOverLengthHighlight()
 	if g:overlength_enabled == 0
-		match OverLength /\%80v.*/
+		match OverLength /\%79v.*/
 		let g:overlength_enabled = 1
 		echo 'Overlength On'
 	else
@@ -133,6 +133,10 @@ function! ToggleOverLengthHighlight()
 	endif
 endfunction
 nnoremap <leader>h :call ToggleOverLengthHighlight()<CR>
+
+" Alternative 80 column highlight, no need to toggle
+autocmd BufEnter * highlight OverLength ctermbg=DarkRed ctermfg=white guibg=#212121
+autocmd BufEnter * match OverLength /\%79v.*/
 
 " Relative numbering toggle
 nnoremap <leader>r :call NumberToggle()<CR>
@@ -157,6 +161,7 @@ set list
 " Misc
 map <F2> :NERDTreeToggle<CR>
 set pastetoggle=<F3>
-set cc=80 " experimental
-set textwidth=80 " experimental 
+set cc=80 " colorcolumn, 1 over the limit
+" set textwidth=81 " textwrapping, try with tw=80 fo=cqt wm=0
 let NERDTreeShowHidden = 1
+" highlight SpecialKey ctermfg=DarkRed
