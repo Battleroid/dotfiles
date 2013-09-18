@@ -119,7 +119,7 @@ nnoremap gd :bdelete<CR>
 nnoremap gf <C-^>
 
 " Alternative 80 column highlight, no need to toggle
-autocmd BufEnter * highlight OverLength ctermbg=DarkRed ctermfg=white guibg=#212121
+autocmd BufEnter * highlight OverLength ctermbg=DarkRed ctermfg=white guibg=#cf0000
 autocmd BufEnter * match OverLength /\%80v.*/
 
 " Relative numbering toggle
