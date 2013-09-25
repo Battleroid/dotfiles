@@ -54,8 +54,8 @@ filetype plugin indent on
 if !has("gui_running")
 	set t_Co=256
 	set background=dark
-	colorscheme hybrid
 endif
+colorscheme hybrid
 au BufRead,BufNewFile *.txt set ft=sh
 hi TabLineFill ctermfg=NONE ctermbg=233
 hi TabLine ctermfg=241 ctermbg=233
