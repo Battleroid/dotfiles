@@ -28,7 +28,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'vim-scripts/Align'          
 Bundle 'xuhdev/SingleCompile'       
 
-" Additional Required Action Bundles
+" Additional Action Required Bundles
 
 " clang_complete requires precompiled library or clang installed
 " Bundle 'Rip-Rip/clang_complete'
