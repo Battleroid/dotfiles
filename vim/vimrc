@@ -1,8 +1,9 @@
-" Vundle
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+""" Vundle {{{
+	set nocompatible
+	filetype off
+	set rtp+=~/.vim/bundle/vundle/
+	call vundle#rc()
+""" }}}
 
 """ Bundles {{{
 	" Required
@@ -28,7 +29,6 @@ call vundle#rc()
 	Bundle 'tpope/vim-surround'         
 	Bundle 'vim-scripts/Align'          
 	Bundle 'xuhdev/SingleCompile'       
-
 	""" Additional Action Required Bundles {{{
 		" clang_complete requires precompiled library or clang installed
 		" Bundle 'Rip-Rip/clang_complete'
@@ -145,17 +145,34 @@ call vundle#rc()
 """ }}}
 
 """ Airline {{{
-	set ttimeoutlen=50
-	" fix unicode symbols
+	set ttimeoutlen=50 " prevent insert mode delay
+	" fix unicode symbols, occurs when using PuTTY, investigate
 	let g:airline_left_sep = '>>'
 	let g:airline_left_sep = '>'
 	let g:airline_right_sep = '<<'
 	let g:airline_right_sep = '<'
 """ }}}
 
+""" Overlength Toggle {{{
+	let g:overlength_enabled = 0
+	highlight OverLength ctermbg=238 guibg=LightRed
+	function! ToggleOverLength()
+		if g:overlength_enabled == 0
+			match OverLength /\%79v.*/
+			let g:overlength_enabled = 1
+			echo 'OverLength highlighting turned on'
+		else
+			match
+			let g:overlength_enabled = 0
+			echo 'OverLength highlighting turned off'
+		endif
+	endfunction
+	nnoremap <leader>h :call ToggleOverLength()<CR>
+""" }}}
+
 """ Alternative 80 column highlight, automatically enabled {{{
-	autocmd BufEnter * highlight OverLength ctermbg=DarkRed ctermfg=white guibg=#cf0000
-	autocmd BufEnter * match OverLength /\%80v.*/
+	"autocmd BufEnter * highlight OverLength ctermbg=DarkRed ctermfg=white guibg=#cf0000
+	"autocmd BufEnter * match OverLength /\%80v.*/
 """ }}}
 
 """ Show tabs {{{
