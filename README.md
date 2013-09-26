@@ -10,7 +10,7 @@ Note: Most of the features, plugins, packages, etc rely on the latest vim compil
 
 Remember to compile with these options:
 
-```
+```bash
 ./configure --enable-pythoninterp \
 	--enable-rubyinterp \
 	--enable-luainterp \
