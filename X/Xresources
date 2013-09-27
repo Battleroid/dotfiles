@@ -27,6 +27,7 @@ URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 #define t_blue #81A2BE
 #define t_purple #B294BB
 
+! * or .
 URxvt*background: t_background
 URxvt*foreground: t_foreground
 ! black
