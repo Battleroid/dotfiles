@@ -26,6 +26,8 @@ I still have no clue what I am doing with i3, I love it though, reminds me of 'A
 
 Would love to get some simple icons in the status bar so I can intepret the information easier.
 
+Added a bunch of information to the config and status information. Completely changed the colorscheme to a purple-ish theme based off the the hybrid-vim colorscheme. Changed the status bar to use a dark red for downed services, and aqua blue for running services. Again, based off of the hybrid-vim colorscheme. 
+
 X
 =
 
@@ -36,5 +38,13 @@ To change the default terminal under Ubuntu (gnome) use `sudo update-alternative
 `xinitrc` and `xprofile` are needed to properly load `Xresources`. Without either you get the pink eye.
 
 **Note:** I replaced `gnome-screensaver` with `xscreensaver` (the launch for the daemon can be found in the i3 config). Removed `gnome-screensaver` as the default by using the man page for `xscreensaver` (under gnome). Opted **not** to remove it just in case I bork something badly. It supports locking, standby, and suspend and whatnot. Personal preferences can go in `$HOME/.xscreensaver`. You can find the defaults under `/etc/X11/app-defaults/XScreenSaver`.
+
+Added `urxvtd &` for daemon mode. Less memory usage, faster, etc.
+
+Added `unclutter` and a possible entry for `dunst`.
+
+Added `xscreensaver` preferences (still configuring to lock properly).
+
+Added `xpdfrc` for xpdf.
 
 Contains Xresources, etc.
