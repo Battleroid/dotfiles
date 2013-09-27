@@ -7,6 +7,7 @@ Todo
 ----
 
 1. `xscreensaver` and `gnome-screensaver` seem to overlap. May need to entirely remove `gnome-screensaver`.
+	* **FIXED** Apparently I had a typo. Go figure.
 
 vim
 ===
@@ -43,6 +44,8 @@ To change the default terminal under Ubuntu (gnome) use `sudo update-alternative
 `xinitrc` and `xprofile` are needed to properly load `Xresources`. Without either you get the pink eye.
 
 **Note:** I replaced `gnome-screensaver` with `xscreensaver` (the launch for the daemon can be found in the i3 config). Removed `gnome-screensaver` as the default by using the man page for `xscreensaver` (under gnome). Opted **not** to remove it just in case I bork something badly. It supports locking, standby, and suspend and whatnot. Personal preferences can go in `$HOME/.xscreensaver`. You can find the defaults under `/etc/X11/app-defaults/XScreenSaver`.
+
+**Another Note:** Apparently i3 has it's own up to date repo for everything. Why they don't mention this on their download page for the various \*nix distributions I haveno god damn clue. Go to their docs/repos section and install that. Thanks to that I was able to save a plethora of time and fix so many issues.
 
 Added `urxvtd &` for daemon mode. Less memory usage, faster, etc.
 
