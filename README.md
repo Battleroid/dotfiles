@@ -3,6 +3,11 @@ dotfiles
 
 Things I generally reuse, and vim junk. Don't blame me for problems or issues that may arise from using any of this.
 
+Todo
+----
+
+1. `xscreensaver` and `gnome-screensaver` seem to overlap. May need to entirely remove `gnome-screensaver`.
+
 vim
 ===
 
