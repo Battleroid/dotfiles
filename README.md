@@ -28,13 +28,9 @@ Remember to compile with these options:
 i3
 ==
 
-I still have no clue what I am doing with i3, I love it though, reminds me of 'Arrange' by Trifle for OS X, except way better.
-
-Would love to get some simple icons in the status bar so I can intepret the information easier.
-
 Added a bunch of information to the config and status information. Completely changed the colorscheme to a purple-ish theme based off the the hybrid-vim colorscheme. Changed the status bar to use a dark red for downed services, and aqua blue for running services. Again, based off of the hybrid-vim colorscheme. 
 
-**Another Note:** Apparently i3 has it's own up to date repo for everything. Why they don't mention this on their download page for the various \*nix distributions I haveno god damn clue. Go to their docs/repos section and install that. Thanks to that I was able to save a plethora of time and fix so many issues.
+**Note:** Apparently i3 has it's own up to date repo for everything. Why they don't mention this on their download page for the various \*nix distributions I have no god damn clue. Go to their [repos](http://i3wm.org/docs/repositories.html) section and install that. Thanks to that I was able to save a plethora of time and fix so many issues.
 
 X
 =
@@ -45,14 +41,14 @@ To change the default terminal under Ubuntu (gnome) use `sudo update-alternative
 
 `xinitrc` and `xprofile` are needed to properly load `Xresources`. Without either you get the pink eye.
 
-**Note:** I replaced `gnome-screensaver` with `xscreensaver` (the launch for the daemon can be found in the i3 config). Removed `gnome-screensaver` as the default by using the man page for `xscreensaver` (under gnome). Opted **not** to remove it just in case I bork something badly. It supports locking, standby, and suspend and whatnot. Personal preferences can go in `$HOME/.xscreensaver`. You can find the defaults under `/etc/X11/app-defaults/XScreenSaver`.
+**Note:** I replaced `gnome-screensaver` with `xscreensaver` (the launch for the daemon can be found in the i3 config). Removed `gnome-screensaver` as the default by using the man page for `xscreensaver` (under gnome). I ended up just removing `gnome-screensaver` to avoid overlap issues. Personal preferences can go in `$HOME/.xscreensaver`. You can find the defaults under `/etc/X11/app-defaults/XScreenSaver`.
 
-Added `urxvtd &` for daemon mode. Less memory usage, faster, etc.
+Added:
 
-Added `unclutter` and a possible entry for `dunst`.
+* `urxvtd &` for daemon mode
+* `unclutter`
+* `dunst`
+* `xscreensaver`
+* `xpdfrc` (for xpdf)
+* `Xresources`
 
-Added `xscreensaver` preferences (still configuring to lock properly).
-
-Added `xpdfrc` for xpdf.
-
-Contains Xresources, etc.
