@@ -1,2 +1,2 @@
 # Load necessary whatnots
-xrdb -load ~/.Xresources &
+xrdb -merge ~/.Xresources &
