@@ -29,4 +29,6 @@ Would love to get some simple icons in the status bar so I can intepret the info
 X
 =
 
-Xresources, etc.
+Currently using rxvt-unicode-256color, I like what it offers over gnome-terminal, and it's nice to be able to ditch gnome-terminal completely. To change the default terminal under ubuntu-gnome use `sudo update-alternatives --config x-terminal-emulator` and choose.
+
+Contains Xresources, etc.
