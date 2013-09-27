@@ -1,0 +1,55 @@
+! General
+! Or use 'Monospace' instead of Terminus to use global
+URxvt*font: xft:Terminus:pixelsize=14
+URxvt*boldFont: xft:Terminus:bold:pizelsize=14
+URxvt*saveLines: 10000
+URxvt*urlLauncher: firefox
+URxvt*allow_bold: true
+URxvt.scrollBar: false
+URxvt.perl-ext-common: default,matcher,tabbed
+URxvt.matcher.button: 1
+URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+
+! Hybrid Terminal Colors
+! vim: ft=xdefaults
+! gist: https://gist.github.com/w0ng/3278077/raw/4d1d04906349efe4054e314b8a19f027bd537eb1/.Xresources-hybrid
+! Tomorrow Night Palette
+#define t_background #1D1F21
+#define t_current_line #282A2E
+#define t_selection #373B41
+#define t_foreground #C5C8C6
+#define t_comment #707880
+#define t_red #CC6666
+#define t_orange #DE935F
+#define t_yellow #F0C674
+#define t_green #B5BD68
+#define t_aqua #8ABEB7
+#define t_blue #81A2BE
+#define t_purple #B294BB
+
+URxvt*background: t_background
+URxvt*foreground: t_foreground
+! black
+URxvt*color0: t_current_line
+URxvt*color8: t_selection
+! red
+URxvt*color1: #A54242
+URxvt*color9: t_red
+! green
+URxvt*color2: #8C9440
+URxvt*color10: t_green
+! yellow
+URxvt*color3: t_orange
+URxvt*color11: t_yellow
+! blue
+URxvt*color4: #5F819D
+URxvt*color12: t_blue
+! magenta
+URxvt*color5: #85678F
+URxvt*color13: t_purple
+! cyan
+URxvt*color6: #5E8D87
+URxvt*color14: t_aqua
+! white
+URxvt*color7: t_comment
+URxvt*color15: t_foreground

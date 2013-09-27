@@ -25,3 +25,8 @@ i3
 I still have no clue what I am doing with i3, I love it though, reminds me of 'Arrange' by Trifle for OS X, except way better.
 
 Would love to get some simple icons in the status bar so I can intepret the information easier.
+
+X
+=
+
+Xresources, etc.
