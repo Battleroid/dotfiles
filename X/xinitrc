@@ -1,0 +1,2 @@
+# Load necessary whatnots
+xrdb -load ~/.Xresources &
