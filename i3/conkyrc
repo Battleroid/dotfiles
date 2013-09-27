@@ -1,0 +1,25 @@
+background        no
+out_to_console 	  yes
+out_to_x	  no
+update_interval	  2
+total_run_times	  0
+short_units	  yes
+pad_percents	  3
+
+override_utf8_locale yes
+
+
+TEXT
+,[
+  {"full_text" : "✖ ${fs_free /}", "color" : "\#FFFFFF", "urgent" : true},
+  {"full_text" : "✗ ${memperc}%", "color" : "\#FFFFFF"},
+  {"full_text" : "✓ ${cpu}%", "color" : "\#FFFFFF"},
+  {"full_text" : "❄ ${exec sensors | awk '/Core 0/ {print $3}'}", "color" : "\#FFFFFF"},
+  {"full_text" : "⥂ ${if_up eth0}${addr eth0}${endif}", "color" : "\#FFFFFF"},
+  {"full_text" : "↯ ${if_up wlan0}${wireless_essid}(${addr wlan0}${wireless_bitrate})${endif}", "color" : "\#FFFFFF"},
+  {"full_text" : "↓${downspeed} ↑${upspeed}", "color" : "\#FFFFFF"},
+  {"full_text" : "⚡ ${battery_percent BAT0}%", "color" : "\#FFFFFF", "urgent" : true},
+  {"full_text" : "${time %Y-%m-%d %H:%M}", "color" : "\#FFFFFF"}
+]
+
+

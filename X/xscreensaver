@@ -1,10 +1,10 @@
 # XScreenSaver Preferences File
-# Written by xscreensaver-demo 5.15 for casey on Fri Sep 27 01:41:55 2013.
+# Written by xscreensaver-demo 5.15 for casey on Fri Sep 27 17:21:47 2013.
 # http://www.jwz.org/xscreensaver/
 
 timeout:	0:10:00
 cycle:		0:10:00
-lock:		False
+lock:		True
 lockTimeout:	0:10:00
 passwdTimeout:	0:00:30
 visualID:	default
@@ -26,7 +26,7 @@ ignoreUninstalledPrograms:False
 font:		*-medium-r-*-140-*-m-*
 dpmsEnabled:	True
 dpmsQuickOff:	False
-dpmsStandby:	0:05:00
+dpmsStandby:	0:30:00
 dpmsSuspend:	0:30:00
 dpmsOff:	4:00:00
 grabDesktopImages:  True

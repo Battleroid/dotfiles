@@ -10,11 +10,12 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 # Autostart
+exec nitrogen --restore
 exec gnome-settings-daemon
 exec gnome-sound-applet
 exec nm-applet
-exec xscreensaver -nosplash
-# exec dmenu_run -i -nb '#8d6898' -nf '#FFFFFF' -sb '#714f7c'
+exec xscreensaver -no-splash
+# exec --no-startup-id nitrogen --restore
 
 # Visuals
 set $outline #8d6898
@@ -24,9 +25,14 @@ set $inactive_bg #532d5e
 set $inactive_text #b0b0b0
 
 # Windows
-client.focused $outline $bg #FFFFFF #333333
-client.unfocused $inactive_outline $inactive_bg $inactive_text #333333
-client.focused_inactive $inactive_outline $inactive_bg $inactive_text #333333
+# outlined purple theme
+# client.focused $outline $bg #FFFFFF #333333
+# client.unfocused $inactive_outline $inactive_bg $inactive_text #333333
+# client.focused_inactive $inactive_outline $inactive_bg $inactive_text #333333
+# solid purple them
+client.focused $bg $bg #FFFFFF #333333
+client.unfocused $inactive_bg $inactive_bg $inactive_text #333333
+client.focused_inactive $inactive_bg $inactive_bg $inactive_text #333333
 
 # Custom
 bindsym $mod+Shift+x exec i3lock
@@ -37,7 +43,9 @@ set $mod Mod1
 # font for window titles. ISO 10646 = Unicode
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # xfontsel > select > paste
-font -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
+# font -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
+# font -xos4-terminus-medium-r-normal-*-12-120-72-72-c-60-iso8859-1
+font xft:Terminus 8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -102,28 +110,26 @@ bindsym $mod+a focus parent
 #bindcode $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
+bindsym $mod+1 workspace 1: term
+bindsym $mod+2 workspace 2: www
+bindsym $mod+3 workspace 3: mail
 bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+exclam move container to workspace 1
-bindsym $mod+Shift+at move container to workspace 2
-bindsym $mod+Shift+numbersign move container to workspace 3
+bindsym $mod+Shift+exclam move container to workspace 1: term
+bindsym $mod+Shift+at move container to workspace 2: www
+bindsym $mod+Shift+numbersign move container to workspace 3: mail
 bindsym $mod+Shift+dollar move container to workspace 4
 bindsym $mod+Shift+percent move container to workspace 5
 bindsym $mod+Shift+asciicircum move container to workspace 6
 bindsym $mod+Shift+ampersand move container to workspace 7
 bindsym $mod+Shift+asterisk move container to workspace 8
 bindsym $mod+Shift+parenleft move container to workspace 9
-bindsym $mod+Shift+parenright move container to workspace 10
 
 # reload the configuration file
 bindsym $mod+Shift+C reload
@@ -161,7 +167,8 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+        # status_command i3status
+		status_command ~/.conky
 		position top
 		colors {
 			background #000000
@@ -181,4 +188,10 @@ for_window [class="(?i)vlc"] floating enable
 for_window [class="(?i)mplayer"] floating enable
 
 # Layout per application basis
-for_window [class="URxvt"] border pixel
+for_window [class="URxvt"] border normal
+
+# Application workspaces
+
+
+# i3 syntax
+# vim:filetype=i3
