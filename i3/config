@@ -11,10 +11,12 @@
 
 # Autostart
 exec gnome-settings-daemon
+exec gnome-sound-applet
 exec nm-applet
+exec xscreensaver -nosplash
 
 # Custom
-bindsym $mod+Shift+X i3lock
+bindsym $mod+Shift+x exec i3lock
 
 set $mod Mod1
 
@@ -145,3 +147,6 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
+
+# Custom keybinds/settings
+for_window [class="ZANDRONUM"] floating enable
