@@ -14,14 +14,30 @@ exec gnome-settings-daemon
 exec gnome-sound-applet
 exec nm-applet
 exec xscreensaver -nosplash
+# exec dmenu_run -i -nb '#8d6898' -nf '#FFFFFF' -sb '#714f7c'
+
+# Visuals
+set $outline #8d6898
+set $bg #714f7c
+set $inactive_outline #714f7c
+set $inactive_bg #532d5e
+set $inactive_text #b0b0b0
+
+# Windows
+client.focused $outline $bg #FFFFFF #333333
+client.unfocused $inactive_outline $inactive_bg $inactive_text #333333
+client.focused_inactive $inactive_outline $inactive_bg $inactive_text #333333
 
 # Custom
 bindsym $mod+Shift+x exec i3lock
+floating_modifier $mod
 
 set $mod Mod1
 
 # font for window titles. ISO 10646 = Unicode
-font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# xfontsel > select > paste
+font -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -146,7 +162,23 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
+		position top
+		colors {
+			background #000000
+			statusline #FFFFFF
+			focused_workspace $outline $bg #FFFFFF
+			active_workspace $outline $bg #FFFFFF
+			urgent_workspace #c82829 #a12627 #FFFFFF
+		}
 }
 
-# Custom keybinds/settings
-for_window [class="ZANDRONUM"] floating enable
+# Floating windows
+for_window [class="(?i)zandronum"] floating enable
+for_window [class="(?i)thunar"] floating enable
+for_window [class="(?i)thunar"] default_orientation vertical
+for_window [class="(?i)thunar"] floating_minimum_size 200 x 200
+for_window [class="(?i)vlc"] floating enable
+for_window [class="(?i)mplayer"] floating enable
+
+# Layout per application basis
+for_window [class="URxvt"] border pixel
