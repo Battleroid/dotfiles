@@ -29,10 +29,12 @@ Would love to get some simple icons in the status bar so I can intepret the info
 X
 =
 
-Currently using rxvt-unicode-256color, I like what it offers over gnome-terminal, and it's nice to be able to ditch gnome-terminal completely. To change the default terminal under ubuntu-gnome use `sudo update-alternatives --config x-terminal-emulator` and choose.
+Currently using `rxvt-unicode-256color`. I like what it offers over gnome-terminal, and it's nice to be able to ditch gnome-terminal completely. 
 
-`xinitrc` and `xprofile` are needed to properly load `Xresources`. Without either you get pink eye.
+To change the default terminal under Ubuntu (gnome) use `sudo update-alternatives --config x-terminal-emulator` and choose.
 
-Note: replaced `gnome-screensaver` with `xscreensaver` (the launch for the daemon can be found in the i3 config). Removed `gnome-screensaver` as the default by using the man page for `xscreensaver` (under gnome). Opted **not** to remove it just in case I bork something badly. It supports locking, standby, and suspend and whatnot. Personal prefs can go in `$HOME/.xscreensaver`. You can find the defaults under `/etc/X11/app-defaults/XScreenSaver`.
+`xinitrc` and `xprofile` are needed to properly load `Xresources`. Without either you get the pink eye.
+
+**Note:** I replaced `gnome-screensaver` with `xscreensaver` (the launch for the daemon can be found in the i3 config). Removed `gnome-screensaver` as the default by using the man page for `xscreensaver` (under gnome). Opted **not** to remove it just in case I bork something badly. It supports locking, standby, and suspend and whatnot. Personal preferences can go in `$HOME/.xscreensaver`. You can find the defaults under `/etc/X11/app-defaults/XScreenSaver`.
 
 Contains Xresources, etc.
