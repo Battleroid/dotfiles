@@ -3,6 +3,26 @@ dotfiles
 
 Things I generally reuse, and vim junk. Don't blame me for problems or issues that may arise from using any of this.
 
+Note
+----
+
+To avoid a lot of issues, annoyances, and manually replacing `gnome-screensaver` with `xscreensaver` just use [Crunchbang](http://crunchbang.org/) and avoid a lot of headache. Using Crunchbang as the base makes it very easy, just do a couple specific things in this order:
+
+1. Install `i3`, `rxvt-unicode-256color`, `vim-nox` (temporarily until you can compile it manually), `unclutter`, and whatnot.
+2. Add `i3` to the sessions under `/etc/slim.conf`.
+3. Login with `i3`.
+4. Add the necessary files, Xresources, etc.
+5. Here's where it gets **really** convenient.
+	1. Copy the startup content that you will need from `~/.config/openbox/autostart` (such as exec nitrogen, etc).
+	2. Log out, log back in.
+	3. See if it worked
+6. Add repo for `i3` from the documentation.
+7. Upgrade `i3` and log out and log back in.
+8. Done.
+
+In the near future I will be able to finalize most of the documents so I can simplify the entire process and avoid confusion.
+
+
 Todo
 ----
 
