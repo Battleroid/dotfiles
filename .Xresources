@@ -1,19 +1,6 @@
-! General
-! Or use 'Monospace' instead of Terminus to use global
-URxvt*font: xft:Terminus:pixelsize=14
-URxvt*boldFont: xft:Terminus:bold:pizelsize=14
-URxvt*saveLines: 10000
-URxvt*urlLauncher: firefox
-URxvt*allow_bold: true
-URxvt.scrollBar: false
-URxvt.perl-ext-common: default,matcher,tabbed
-URxvt.matcher.button: 1
-URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+URxvt.font: -*-*-*-*-*-*-14-*-100-*-*-*-*-*
 
-! Hybrid Terminal Colors
-! vim: ft=xdefaults
-! gist: https://gist.github.com/w0ng/3278077/raw/4d1d04906349efe4054e314b8a19f027bd537eb1/.Xresources-hybrid
-! Tomorrow Night Palette
+! Color
 #define t_background #1D1F21
 #define t_current_line #282A2E
 #define t_selection #373B41
@@ -26,8 +13,6 @@ URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 #define t_aqua #8ABEB7
 #define t_blue #81A2BE
 #define t_purple #B294BB
-
-! Background
 URxvt*background: t_background
 URxvt*foreground: t_foreground
 ! black
