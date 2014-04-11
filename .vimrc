@@ -9,14 +9,19 @@ Bundle 'gmarik/vundle'
 Bundle 'bling/vim-airline'
 Bundle 'bling/vim-bufferline'
 Bundle 'w0ng/vim-hybrid'
-Bundle 'Valloric/YouCompleteMe'
 Bundle 'majutsushi/tagbar'
 Bundle 'tpope/vim-markdown'
+
+" Requires extra packages
+" Bundle 'Valloric/YouCompleteMe'
 
 " Webdev
 " Bundle 'mattn/emmet-vim'
 " Bundle 'ap/vim-css-color' 
 " Bundle 'shawncplus/phpcomplete.vim'
+" Bundle 'shawncplus/phpcomplete.vim'
+" Bundle 'othree/html5.vim'
+" Bundle 'hail2u/vim-css3-syntax'
 
 syntax on
 filetype plugin indent on
