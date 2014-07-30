@@ -3,27 +3,36 @@ set nocompatible
 filetype off
 
 " Vundle
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
-Bundle 'gmarik/vundle'
-Bundle 'bling/vim-airline'
-Bundle 'bling/vim-bufferline'
-Bundle 'w0ng/vim-hybrid'
-Bundle 'majutsushi/tagbar'
-Bundle 'tpope/vim-markdown'
+set rtp+=~/vimfiles/bundle/Vundle.vim/
+let path='~/vimfiles/bundle'
+call vundle#begin(path)
+Plugin 'gmarik/Vundle.vim'
+Plugin 'bling/vim-airline'
+Plugin 'bling/vim-bufferline'
+Plugin 'majutsushi/tagbar'
+Plugin 'tpope/vim-markdown'
+Plugin 'ervandew/supertab'
+
+" Colorschemes
+Plugin 'w0ng/vim-hybrid'
+Plugin 'morhetz/gruvbox'
 
 " Requires extra packages
-" Bundle 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
+" Plugin 'davidhalter/jedi-vim'
 
 " Webdev
-" Bundle 'mattn/emmet-vim'
-" Bundle 'ap/vim-css-color' 
-" Bundle 'shawncplus/phpcomplete.vim'
-" Bundle 'othree/html5.vim'
-" Bundle 'hail2u/vim-css3-syntax'
+Plugin 'mattn/emmet-vim'
+Plugin 'ap/vim-css-color' 
+Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'othree/html5.vim'
+Plugin 'hail2u/vim-css3-syntax'
 
-syntax on
+" End
+call vundle#end()
+
 filetype plugin indent on
+syntax on
 set t_Co=256
 set nu
 set encoding=utf-8
@@ -34,7 +43,13 @@ set ai
 set backspace=indent,eol,start
 set listchars=tab:\|\ 
 set list
-colorscheme hybrid
+colorscheme gruvbox
 
-" filetype
-au BufRead,BufNewFile *.cnf setfiletype cnf
+if has("gui_running")
+	if has("gui_win32")
+		set guifont=Consolas:h11
+	else
+		set guifont=Consolas\ 11
+	endif
+	set guioptions-=T
+endif
