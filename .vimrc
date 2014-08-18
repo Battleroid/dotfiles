@@ -6,7 +6,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-Plugin 'bling/vim-airline'
+Plugin 'itchyny/lightline.vim'
 Plugin 'bling/vim-bufferline'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-markdown'
@@ -52,3 +52,6 @@ if has("gui_running")
 	endif
 	set guioptions-=T
 endif
+
+" Lightline
+set laststatus=2
