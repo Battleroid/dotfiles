@@ -42,6 +42,7 @@ set ai
 set backspace=indent,eol,start
 set listchars=tab:\|\ 
 set list
+set background=dark
 colorscheme gruvbox
 
 if has("gui_running")
