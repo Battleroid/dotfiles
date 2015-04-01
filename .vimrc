@@ -1,3 +1,6 @@
+" fish
+set shell=/bin/bash
+
 " Required
 set nocompatible
 filetype off
