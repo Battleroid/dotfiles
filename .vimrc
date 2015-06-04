@@ -1,4 +1,3 @@
-" fish
 set shell=/bin/bash
 
 " Required
@@ -14,14 +13,17 @@ Plugin 'bling/vim-bufferline'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-markdown'
 Plugin 'ervandew/supertab'
+Plugin 'godlygeek/tabular'
 
 " Colorschemes
-Plugin 'w0ng/vim-hybrid'
-Plugin 'morhetz/gruvbox'
+" Plugin 'ChrisKempson/Vim-Tomorrow-Theme'
+" Plugin 'w0ng/vim-hybrid'
+" Plugin 'morhetz/gruvbox'
+Plugin 'chriskempson/base16-vim'
 
 " Requires extra packages
 " Plugin 'Valloric/YouCompleteMe'
-" Plugin 'davidhalter/jedi-vim'
+Plugin 'davidhalter/jedi-vim'
 
 " Webdev
 Plugin 'mattn/emmet-vim'
@@ -33,9 +35,9 @@ Plugin 'hail2u/vim-css3-syntax'
 " End
 call vundle#end()
 
+" Basics
 filetype plugin indent on
 syntax on
-set t_Co=256
 set nu
 set encoding=utf-8
 set tabstop=4
@@ -45,17 +47,25 @@ set ai
 set backspace=indent,eol,start
 set listchars=tab:\|\ 
 set list
-set background=dark
-colorscheme gruvbox
+set scrolloff=4
+set wildmenu
+set wildmode=longest,list
 
-if has("gui_running")
-	if has("gui_win32")
-		set guifont=Consolas:h11
-	else
-		set guifont=Consolas\ 11
-	endif
-	set guioptions-=T
-endif
+" base16 related
+let base16colorspace=256
+let g:base16_shell_path="~/.config/base16-shell"
+
+" Colorscheme related
+set t_Co=256
+set background=dark
+colorscheme base16-tomorrow
+
+" Miscellaneous {
 
 " Lightline
 set laststatus=2
+
+" Python
+autocmd Filetype python setlocal expandtab
+
+" }
