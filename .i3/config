@@ -6,14 +6,21 @@
 #
 
 # i3 config file (v4)
+#
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod1
 
-# Bar / Window Title Font
-# font pango:Source Code Pro 9
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+font -*-fixed-medium-*-*-*-14-*-*-*-*-*-*-*
+# Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango:Tewi 9
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, its unicode glyph coverage is limited, the old
+# X core fonts rendering does not support right-to-left and this being a bitmap
+# font, it doesn’t scale on retina/hidpi displays.
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -25,7 +32,11 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run -i -l 5 -p ">" -fn 'Tewi-9' -nb '#1d1f21' -nf '#e0e0e0' -sb '#81a2be' -sf '#e0e0e0'
+bindsym $mod+d exec dmenu_run
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+j focus left
@@ -77,14 +88,10 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-set $w1 term
-set $w2 www
-set $w3 game
-
 # switch to workspace
-bindsym $mod+1 workspace $w1
-bindsym $mod+2 workspace $w2
-bindsym $mod+3 workspace $w3
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
 bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
@@ -94,9 +101,9 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $w1
-bindsym $mod+Shift+2 move container to workspace $w2
-bindsym $mod+Shift+3 move container to workspace $w3
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
 bindsym $mod+Shift+4 move container to workspace 4
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
@@ -138,39 +145,11 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# color preset
-set   $green   "#b5bd68"
-set   $blue    "#81a2be"
-set   $turq    "#8abeb7"
-set   $red     "#c66666"
-set   $black   "#1d1f21"
-set   $light   "#373b41"
-set   $text    "#e0e0e0"
-
-# Monitor declarations
-set $primary "DisplayPort-4"
-# set $secondary "LVDS"
-
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
 bar {
-	position top
-	tray_output $primary
-	status_command i3status -c ~/.i3/status.conf
-	font pango:Tewi, FontAwesome 9
-
-	colors {
-		background           $black
-		focused_workspace    $blue     $blue    $black
-		active_workspace     $green    $green   $black
-		inactive_workspace   $light    $light   $text
-		urgent_workspace     $red      $red     $black
-	}
+        status_command i3status
 }
-
-# colors border background text indicator
-client.focused            $blue    $blue    $text   $blue
-client.unfocused          $black   $black   $text   $black
-client.focused_inactive   $turq    $turq    $text   $turq
-client.urgent             $red     $red     $text   $red
 
 # gaps
 set $inner_gap 20
@@ -179,7 +158,7 @@ smart_gaps on
 smart_borders no_gaps
 
 # applications
-bindsym $mod+i exec google-chrome-stable
+bindsym $mod+i exec firefox
 
 # default window
 hide_edge_borders none
@@ -189,15 +168,12 @@ for_window [class="(?i)keepass2" title="(?i)*keepass$"] floating enable
 for_window [class="(?i)ffplay"] floating enable
 for_window [class="(?i)mplayer2"] floating enable
 
-# workspaces
-# assign [class="URxvt|xterm|Gnome-terminal"] term
-# assign [class="Firefox|Google-chrome|Luakit"] www
-# assign [class="(?i)steam|dontstarve"] game
-
-# startup
-exec ~/.screenlayout/default.sh
-exec --no-startup-id sh ~/.fehbg &
 exec --no-startup-id nm-applet &
+exec --no-startup-id volti &
+exec --no-startup-id udiskie --tray &
 exec --no-startup-id urxvtd -q -o -f &
 exec --no-startup-id compton --config ~/.compton.conf &
-exec --no-startup-id volti &
+exec --no-startup-id sh ~/.fehbg &
+exec --no-startup-id xscreensaver -no-splash &
+exec --no-startup-id tpb -d &
+exec --no-startup-id xrdb ~/.Xresources

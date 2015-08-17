@@ -16,13 +16,13 @@ Plugin 'ervandew/supertab'
 Plugin 'godlygeek/tabular'
 
 " Colorschemes
+Plugin 'w0ng/vim-hybrid'
 " Plugin 'ChrisKempson/Vim-Tomorrow-Theme'
-" Plugin 'w0ng/vim-hybrid'
 " Plugin 'morhetz/gruvbox'
-Plugin 'chriskempson/base16-vim'
+" Plugin 'chriskempson/base16-vim'
 
 " Requires extra packages
-" Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe' " relies on jedi for python completion
 Plugin 'davidhalter/jedi-vim'
 
 " Webdev
@@ -52,15 +52,32 @@ set wildmenu
 set wildmode=longest,list
 
 " base16 related
-let base16colorspace=256
-let g:base16_shell_path="~/.config/base16-shell"
+" let base16colorspace=256
+" let g:base16_shell_path="~/.config/base16-shell"
 
 " Colorscheme related
 set t_Co=256
+let g:hybrid_use_Xresources = 1
 set background=dark
-colorscheme base16-tomorrow
+colorscheme hybrid
 
 " Miscellaneous {
+
+" Line and column highlight, helps to keep track of cursor
+hi CursorLine cterm=NONE ctermbg=black
+let &colorcolumn=join(range(81,999),",") " highlight past 80 col
+set cursorline
+set cursorcolumn
+
+" Change gvim font and toolbar options
+if has("gui_running")
+	set guifont=Inconsolata\ 13
+	set guioptions=-T
+	set guioptions=-M
+endif
+
+" Emmet
+let g:user_emmet_leader_key = '\'
 
 " Lightline
 set laststatus=2
