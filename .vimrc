@@ -14,12 +14,10 @@ Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-markdown'
 Plugin 'ervandew/supertab'
 Plugin 'godlygeek/tabular'
+Plugin 'tpope/vim-fugitive'
 
 " Colorschemes
 Plugin 'w0ng/vim-hybrid'
-" Plugin 'ChrisKempson/Vim-Tomorrow-Theme'
-" Plugin 'morhetz/gruvbox'
-" Plugin 'chriskempson/base16-vim'
 
 " Requires extra packages
 " Plugin 'Valloric/YouCompleteMe' " relies on jedi for python completion
@@ -50,10 +48,6 @@ set list
 set scrolloff=4
 set wildmenu
 set wildmode=longest,list
-
-" base16 related
-" let base16colorspace=256
-" let g:base16_shell_path="~/.config/base16-shell"
 
 " Colorscheme related
 set t_Co=256
