@@ -1,5 +1,8 @@
 ! URxvt.font: xft:Tewi:pixelsize=9:antialias=false
 URxvt.font: -*-fixed-medium-*-*-*-15-*-*-*-*-*-*-*
+! URxvt.font: xft:Inconsolata:pixelsize=16:antialias=true
+! Use letterSpace with Inconsolata
+! URxvt.letterSpace: -1
 URxvt.cursorColor: white
 
 ! hybrid
