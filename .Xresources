@@ -1,12 +1,15 @@
-! URxvt.font: xft:Tewi:pixelsize=9:antialias=false
-URxvt.font: -*-fixed-medium-*-*-*-15-*-*-*-*-*-*-*
-! URxvt.font: xft:Inconsolata:pixelsize=16:antialias=true
+URxvt.font: xft:Inconsolata:pixelsize=14:antialias=true
 ! Use letterSpace with Inconsolata
-! URxvt.letterSpace: -1
+URxvt.letterSpace: -1
 URxvt.cursorColor: white
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/firefox
+URxvt.matcher.button: 1
 
 ! hybrid
-*background: #1D1F21
+*cursorColor: white
+URxvt.depth: 32
+URxvt.background: [90]#1D1F21
 *foreground: #C5C8C6
 *color0: #282A2E
 *color8: #373B41
