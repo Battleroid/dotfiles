@@ -12,16 +12,18 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'bling/vim-bufferline'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-markdown'
-Plugin 'ervandew/supertab'
 Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-fugitive'
+
+" Enable only if YCM is not installed
+" Plugin 'ervandew/supertab'
 
 " Colorschemes
 Plugin 'w0ng/vim-hybrid'
 
 " Requires extra packages
 " Plugin 'Valloric/YouCompleteMe' " relies on jedi for python completion
-Plugin 'davidhalter/jedi-vim'
+" Plugin 'davidhalter/jedi-vim'
 
 " Webdev
 Plugin 'mattn/emmet-vim'
@@ -29,6 +31,7 @@ Plugin 'ap/vim-css-color'
 Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'othree/html5.vim'
 Plugin 'hail2u/vim-css3-syntax'
+Plugin 'Glench/Vim-Jinja2-Syntax'
 
 " End
 call vundle#end()
@@ -78,5 +81,8 @@ set laststatus=2
 
 " Python
 autocmd Filetype python setlocal expandtab
+
+" YCM
+" let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
 
 " }
