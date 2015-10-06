@@ -14,7 +14,8 @@ set $mod Mod1
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
-font -*-fixed-medium-*-*-*-14-*-*-*-*-*-*-*
+# font -*-fixed-medium-*-*-*-14-*-*-*-*-*-*-*
+font 6x13
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
@@ -32,7 +33,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec dmenu_run -nb "#1D1F21"
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -73,7 +74,7 @@ bindsym $mod+f fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -99,6 +100,12 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
+
+# numpad
+bindsym $mod+KP_Home workspace 7
+bindsym $mod+KP_Up workspace 8
+bindsym $mod+KP_Prior workspace 9
+bindsym $mod+KP_Insert workspace 10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -148,11 +155,12 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+		status_command i3blocks
+		position top
 }
 
 # gaps
-set $inner_gap 20
+set $inner_gap 15
 gaps inner $inner_gap
 smart_gaps on
 smart_borders no_gaps
@@ -167,13 +175,37 @@ for_window [class="(?i)keepass2" title="(?i)^Open Database*"] floating enable, m
 for_window [class="(?i)keepass2" title="(?i)*keepass$"] floating enable
 for_window [class="(?i)ffplay"] floating enable
 for_window [class="(?i)mplayer2"] floating enable
+for_window [class="(?i)seafile-applet"] floating enable
+for_window [class="(?i)steam" title="(?i)Steam Subscriber Agreement"] floating enable
+for_window [class="(?i)steam" title="(?i)*- Chat"] floating enable
+for_window [class="(?i)mpv"] floating enable move absolute position center
+for_window [title="(?i)Source of:*"] floating enable
+for_window [class="(?i)feh"] floating enable move absolute position center
+for_window [class="(?i)thunar"] floating enable
+
+# default workspaces
+assign [class="(?i)seafile-applet"] 10
+assign [class="(?i)mumble"] 9
+assign [class="(?i)steam"] 8
+assign [class="(?i)spotify"] 7
+assign [class="(?i)thunderbird"] 3
 
 exec --no-startup-id nm-applet &
 exec --no-startup-id volti &
 exec --no-startup-id udiskie --tray &
 exec --no-startup-id urxvtd -q -o -f &
-exec --no-startup-id compton --config ~/.compton.conf &
 exec --no-startup-id sh ~/.fehbg &
 exec --no-startup-id xscreensaver -no-splash &
 exec --no-startup-id tpb -d &
 exec --no-startup-id xrdb ~/.Xresources
+exec --no-startup-id seafile-applet &
+exec --no-startup-id steam &
+exec --no-startup-id spotify &
+exec --no-startup-id twmnd &
+exec --no-startup-id thunderbird &
+# Is compton really worth it?
+# exec --no-startup-id compton --config ~/.compton.conf &
+
+# keys & mouse related
+exec xset m 0 0 
+exec --no-startup-id xbindkeys_autostart

@@ -14,6 +14,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-markdown'
 Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-fugitive'
+Plugin 'nvie/vim-flake8'
 
 " Enable only if YCM is not installed
 " Plugin 'ervandew/supertab'
@@ -62,13 +63,13 @@ colorscheme hybrid
 
 " Line and column highlight, helps to keep track of cursor
 hi CursorLine cterm=NONE ctermbg=black
-let &colorcolumn=join(range(81,999),",") " highlight past 80 col
+let &colorcolumn=join(range(80,999),",") " highlight past 80 col
 set cursorline
 set cursorcolumn
 
 " Change gvim font and toolbar options
 if has("gui_running")
-	set guifont=Inconsolata\ 13
+	set guifont=Ricty\ Diminished\ 13
 	set guioptions=-T
 	set guioptions=-M
 endif
@@ -83,6 +84,6 @@ set laststatus=2
 autocmd Filetype python setlocal expandtab
 
 " YCM
-" let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
+let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
 
 " }
