@@ -11,20 +11,24 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'bling/vim-bufferline'
 Plugin 'majutsushi/tagbar'
-Plugin 'tpope/vim-markdown'
+" Plugin 'tpope/vim-markdown'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'tpope/vim-surround'
+Plugin 'SirVer/ultisnips'
 Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-fugitive'
 Plugin 'nvie/vim-flake8'
+Plugin 'Raimondi/delimitMate'
 
 " Enable only if YCM is not installed
-" Plugin 'ervandew/supertab'
+Plugin 'ervandew/supertab'
 
 " Colorschemes
 Plugin 'w0ng/vim-hybrid'
 
 " Requires extra packages
 " Plugin 'Valloric/YouCompleteMe' " relies on jedi for python completion
-" Plugin 'davidhalter/jedi-vim'
+Plugin 'davidhalter/jedi-vim'
 
 " Webdev
 Plugin 'mattn/emmet-vim'
@@ -55,7 +59,7 @@ set wildmode=longest,list
 
 " Colorscheme related
 set t_Co=256
-let g:hybrid_use_Xresources = 1
+let g:hybrid_use_Xresources=1
 set background=dark
 colorscheme hybrid
 
@@ -69,19 +73,37 @@ set cursorcolumn
 
 " Change gvim font and toolbar options
 if has("gui_running")
-	set guifont=Ricty\ Diminished\ 13
 	set guioptions=-T
 	set guioptions=-M
 endif
 
-" Emmet
-let g:user_emmet_leader_key = '\'
+" Folding
+set foldmethod=indent
+set foldnestmax=5
+set nofoldenable
+
+" Markdown
+let g:vim_markdown_frontmatter=1
+
+" Ultisnips
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" Autoclose
+let delimitMate_expand_cr = 1
 
 " Lightline
 set laststatus=2
 
 " Python
 autocmd Filetype python setlocal expandtab
+
+" Eclim
+let g:EclimJavaValidate = 1
+let g:EclimValidateSortresults = 'severity'
+autocmd Filetype java let g:EclimCompletionMethod = 'omnifunc'
+autocmd Filetype java let g:SuperTabDefaultCompletionType = 'context'
 
 " YCM
 let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
