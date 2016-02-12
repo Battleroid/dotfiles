@@ -7,6 +7,8 @@ filetype off
 " Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+
+" General plugins
 Plugin 'gmarik/Vundle.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'bling/vim-bufferline'
@@ -19,6 +21,7 @@ Plugin 'nvie/vim-flake8'
 Plugin 'Raimondi/delimitMate'
 
 " Markdown writing
+Plugin 'reedes/vim-litecorrect'
 Plugin 'reedes/vim-pencil'
 " Plugin 'junegunn/goyo.vim'
 Plugin 'tpope/vim-markdown'
@@ -30,7 +33,7 @@ Plugin 'ervandew/supertab'
 Plugin 'w0ng/vim-hybrid'
 
 " Requires extra packages
-" Plugin 'Valloric/YouCompleteMe' " relies on jedi for python completion
+" Plugin 'Valloric/YouCompleteMe'
 Plugin 'davidhalter/jedi-vim'
 
 " Webdev
@@ -52,7 +55,7 @@ set encoding=utf-8
 set tabstop=4
 set shiftwidth=4
 set smarttab
-set ai
+set autoindent
 set backspace=indent,eol,start
 set listchars=tab:\|\ 
 set list
@@ -85,6 +88,8 @@ set nofoldenable
 
 " Markdown
 " let g:vim_markdown_frontmatter=1
+autocmd Filetype markdown,mkd,md setlocal linebreak tw=80
+let g:markdown_fenced_languages = ['python', 'java']
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger = "<tab>"
@@ -97,10 +102,12 @@ let delimitMate_expand_cr = 1
 " Lightline
 set laststatus=2
 
-" Python
-autocmd Filetype python setlocal expandtab
+" stuff
+autocmd Filetype python let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
 let g:jedi#popup_on_dot = 0
-let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
+" let g:jedi#popup_select_first = 0
+autocmd Filetype python setlocal expandtab
+autocmd Filetype sourcepawn setlocal makeprg=$HOME/sm/scripting/spcomp\ %
 
 " Eclim
 " let g:EclimJavaValidate = 1
@@ -109,11 +116,22 @@ let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
 " autocmd Filetype java let g:SuperTabDefaultCompletionType = 'context'
 
 " Pencil
-let g:pencil#wrapModeDefault = 'soft'
 augroup pencil
 	autocmd!
-	autocmd FileType markdown,mkd call pencil#init()
+	autocmd FileType markdown,mkd,md call pencil#init()
+		\ | call litecorrect#init()
+		\ | setlocal spell
+		\ | setlocal spl=en_us
+		\ | setlocal tw=80
+	    \ | let g:pencil#wrapModeDefault = 'soft'
+	    \ | let g:airline_section_x = '%{PencilMode()}'
 	autocmd FileType text call pencil#init({'wrap': 'hard'})
+		\ | call litecorrect#init()
+		\ | setlocal spell
+		\ | setlocal spl=en_us
+		\ | setlocal tw=80
+	    \ | let g:pencil#wrapModeDefault = 'soft'
+	    \ | let g:airline_section_x = '%{PencilMode()}'
 augroup END
 
 " YCM
