@@ -11,14 +11,17 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'bling/vim-bufferline'
 Plugin 'majutsushi/tagbar'
-" Plugin 'tpope/vim-markdown'
-Plugin 'plasticboy/vim-markdown'
 Plugin 'tpope/vim-surround'
 Plugin 'SirVer/ultisnips'
 Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-fugitive'
 Plugin 'nvie/vim-flake8'
 Plugin 'Raimondi/delimitMate'
+
+" Markdown writing
+Plugin 'reedes/vim-pencil'
+" Plugin 'junegunn/goyo.vim'
+Plugin 'tpope/vim-markdown'
 
 " Enable only if YCM is not installed
 Plugin 'ervandew/supertab'
@@ -63,8 +66,6 @@ let g:hybrid_use_Xresources=1
 set background=dark
 colorscheme hybrid
 
-" Miscellaneous {
-
 " Line and column highlight, helps to keep track of cursor
 hi CursorLine cterm=NONE ctermbg=black
 let &colorcolumn=join(range(80,999),",") " highlight past 80 col
@@ -83,7 +84,7 @@ set foldnestmax=5
 set nofoldenable
 
 " Markdown
-let g:vim_markdown_frontmatter=1
+" let g:vim_markdown_frontmatter=1
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger = "<tab>"
@@ -98,14 +99,22 @@ set laststatus=2
 
 " Python
 autocmd Filetype python setlocal expandtab
+let g:jedi#popup_on_dot = 0
+let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
 
 " Eclim
-let g:EclimJavaValidate = 1
-let g:EclimValidateSortresults = 'severity'
-autocmd Filetype java let g:EclimCompletionMethod = 'omnifunc'
-autocmd Filetype java let g:SuperTabDefaultCompletionType = 'context'
+" let g:EclimJavaValidate = 1
+" let g:EclimValidateSortresults = 'severity'
+" autocmd Filetype java let g:EclimCompletionMethod = 'omnifunc'
+" autocmd Filetype java let g:SuperTabDefaultCompletionType = 'context'
+
+" Pencil
+let g:pencil#wrapModeDefault = 'soft'
+augroup pencil
+	autocmd!
+	autocmd FileType markdown,mkd call pencil#init()
+	autocmd FileType text call pencil#init({'wrap': 'hard'})
+augroup END
 
 " YCM
-let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
-
-" }
+" let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
