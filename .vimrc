@@ -36,6 +36,9 @@ Plugin 'w0ng/vim-hybrid'
 " Plugin 'Valloric/YouCompleteMe'
 Plugin 'davidhalter/jedi-vim'
 
+" Go
+Plugin 'nsf/gocode', {'rtp': 'vim/'}
+
 " Webdev
 Plugin 'mattn/emmet-vim'
 Plugin 'ap/vim-css-color' 
@@ -62,6 +65,7 @@ set list
 set scrolloff=4
 set wildmenu
 set wildmode=longest,list
+set mouse=a
 
 " Colorscheme related
 set t_Co=256
@@ -103,17 +107,43 @@ let delimitMate_expand_cr = 1
 set laststatus=2
 
 " stuff
-autocmd Filetype python let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
-let g:jedi#popup_on_dot = 0
 " let g:jedi#popup_select_first = 0
+autocmd Filetype python let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
 autocmd Filetype python setlocal expandtab
 autocmd Filetype sourcepawn setlocal makeprg=$HOME/sm/scripting/spcomp\ %
-
-" Eclim
-" let g:EclimJavaValidate = 1
-" let g:EclimValidateSortresults = 'severity'
-" autocmd Filetype java let g:EclimCompletionMethod = 'omnifunc'
-" autocmd Filetype java let g:SuperTabDefaultCompletionType = 'context'
+autocmd VimEnter * nested :call tagbar#autoopen(1)
+let g:SuperTabDefaultCompletionType = 'context'
+let g:jedi#popup_on_dot = 0
+let g:tagbar_autofocus = 0
+let g:tagbar_iconchars = ['▸', '▾']
+let g:tagbar_left = 1
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
 
 " Pencil
 augroup pencil
