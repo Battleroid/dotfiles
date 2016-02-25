@@ -24,7 +24,8 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'reedes/vim-litecorrect'
 Plugin 'reedes/vim-pencil'
 " Plugin 'junegunn/goyo.vim'
-Plugin 'tpope/vim-markdown'
+" Plugin 'tpope/vim-markdown' " dev version
+Plugin 'plasticboy/vim-markdown'
 
 " Enable only if YCM is not installed
 Plugin 'ervandew/supertab'
@@ -108,10 +109,15 @@ set laststatus=2
 
 " stuff
 " let g:jedi#popup_select_first = 0
+let g:tagbar_open_on_key = 1
 autocmd Filetype python let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
 autocmd Filetype python setlocal expandtab
 autocmd Filetype sourcepawn setlocal makeprg=$HOME/sm/scripting/spcomp\ %
-autocmd VimEnter * nested :call tagbar#autoopen(1)
+if g:tagbar_open_on_key == 1
+	nmap <F10> :TagbarToggle<CR>
+else
+	autocmd VimEnter * nested :call tagbar#autoopen(1)
+endif
 let g:SuperTabDefaultCompletionType = 'context'
 let g:jedi#popup_on_dot = 0
 let g:tagbar_autofocus = 0
@@ -144,6 +150,14 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
 \ }
+let g:tagbar_type_markdown = {
+    \ 'ctagstype' : 'markdown',
+    \ 'kinds' : [
+        \ 'h:Heading_L1',
+        \ 'i:Heading_L2',
+        \ 'k:Heading_L3'
+    \ ]
+\ }
 
 " Pencil
 augroup pencil
@@ -152,11 +166,15 @@ augroup pencil
 		\ | call litecorrect#init()
 		\ | setlocal spell
 		\ | setlocal spl=en_us
-		\ | setlocal tw=80
+		\ | setlocal linebreak
+		\ | setlocal wrap
+		\ | let g:pencil#softDetectSample = 30
 	    \ | let g:pencil#wrapModeDefault = 'soft'
 	    \ | let g:airline_section_x = '%{PencilMode()}'
 	autocmd FileType text call pencil#init({'wrap': 'hard'})
 		\ | call litecorrect#init()
+		\ | setlocal linebreak
+		\ | setlocal wrap
 		\ | setlocal spell
 		\ | setlocal spl=en_us
 		\ | setlocal tw=80
