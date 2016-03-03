@@ -15,20 +15,17 @@ Plugin 'bling/vim-bufferline'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-surround'
 Plugin 'SirVer/ultisnips'
-Plugin 'godlygeek/tabular'
+Plugin 'junegunn/vim-easy-align'
 Plugin 'tpope/vim-fugitive'
 Plugin 'nvie/vim-flake8'
 Plugin 'Raimondi/delimitMate'
+Plugin 'tweekmonster/braceless.vim'
 
 " Markdown writing
+" Plugin 'junegunn/goyo.vim'
+Plugin 'plasticboy/vim-markdown'
 Plugin 'reedes/vim-litecorrect'
 Plugin 'reedes/vim-pencil'
-" Plugin 'junegunn/goyo.vim'
-" Plugin 'tpope/vim-markdown' " dev version
-Plugin 'plasticboy/vim-markdown'
-
-" Enable only if YCM is not installed
-Plugin 'ervandew/supertab'
 
 " Colorschemes
 Plugin 'w0ng/vim-hybrid'
@@ -37,16 +34,19 @@ Plugin 'w0ng/vim-hybrid'
 " Plugin 'Valloric/YouCompleteMe'
 Plugin 'davidhalter/jedi-vim'
 
+" Enable only if YCM is not installed
+Plugin 'ervandew/supertab'
+
 " Go
 Plugin 'nsf/gocode', {'rtp': 'vim/'}
 
 " Webdev
-Plugin 'mattn/emmet-vim'
-Plugin 'ap/vim-css-color' 
-Plugin 'shawncplus/phpcomplete.vim'
-Plugin 'othree/html5.vim'
-Plugin 'hail2u/vim-css3-syntax'
+" Plugin 'ap/vim-css-color' 
+" Plugin 'hail2u/vim-css3-syntax'
+" Plugin 'othree/html5.vim'
+" Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'Glench/Vim-Jinja2-Syntax'
+Plugin 'mattn/emmet-vim'
 
 " End
 call vundle#end()
@@ -54,19 +54,19 @@ call vundle#end()
 " Basics
 filetype plugin indent on
 syntax on
-set nu
-set encoding=utf-8
-set tabstop=4
-set shiftwidth=4
-set smarttab
 set autoindent
 set backspace=indent,eol,start
-set listchars=tab:\|\ 
+set encoding=utf-8
 set list
+set listchars=tab:\|\ ,eol:¬,trail:·
+set mouse=
+set nu
 set scrolloff=4
+set shiftwidth=4
+set smarttab
+set tabstop=4
 set wildmenu
 set wildmode=longest,list
-set mouse=a
 
 " Colorscheme related
 set t_Co=256
@@ -76,9 +76,15 @@ colorscheme hybrid
 
 " Line and column highlight, helps to keep track of cursor
 hi CursorLine cterm=NONE ctermbg=black
-let &colorcolumn=join(range(80,999),",") " highlight past 80 col
+let &colorcolumn=join(range(79,999),",") " highlight past 80 col
 set cursorline
 set cursorcolumn
+
+" Tabs & Buffers
+nn <C-tab> :tabnext<CR>
+nn <C-S-tab> :tabprevious<CR>
+nn <C-t> :tabnew<CR>
+nn <Leader>cc :tabclose<CR>
 
 " Change gvim font and toolbar options
 if has("gui_running")
@@ -92,8 +98,7 @@ set foldnestmax=5
 set nofoldenable
 
 " Markdown
-" let g:vim_markdown_frontmatter=1
-autocmd Filetype markdown,mkd,md setlocal linebreak tw=80
+let g:vim_markdown_frontmatter=1
 let g:markdown_fenced_languages = ['python', 'java']
 
 " Ultisnips
@@ -107,19 +112,44 @@ let delimitMate_expand_cr = 1
 " Lightline
 set laststatus=2
 
-" stuff
-" let g:jedi#popup_select_first = 0
+" Easy Align
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+
+" Atuocompletion
+let g:SuperTabDefaultCompletionType = 'context'
+let g:jedi#popup_on_dot = 0
+
+" Pencil
+function! Pencil()
+	setl linebreak wrap spell spl=en_us tw=80
+	call pencil#init({'wrap': 'hard'})
+	call litecorrect#init()
+endfunction
+autocmd FileType markdown,text,mkd,md call Pencil()
+
+" Python
+function! Python()
+	setl expandtab smartindent tw=79
+	let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
+	autocmd! FileType python BracelessEnable +indent +fold +highlight
+	autocmd! BufWritePost <buffer> call StripWhitespace()
+endfunction
+autocmd FileType python call Python()
+
+" Git
+nn <space>ga :Git add %:p<CR><CR>
+nn <space>gs :Gstatus<CR>
+nn <space>gc :Gcommit -v -q<CR><CR>
+nn <space>gw :Gwrite<CR><CR>
+
+" Tagbar
 let g:tagbar_open_on_key = 1
-autocmd Filetype python let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
-autocmd Filetype python setlocal expandtab
-autocmd Filetype sourcepawn setlocal makeprg=$HOME/sm/scripting/spcomp\ %
 if g:tagbar_open_on_key == 1
 	nmap <F10> :TagbarToggle<CR>
 else
 	autocmd VimEnter * nested :call tagbar#autoopen(1)
 endif
-let g:SuperTabDefaultCompletionType = 'context'
-let g:jedi#popup_on_dot = 0
 let g:tagbar_autofocus = 0
 let g:tagbar_iconchars = ['▸', '▾']
 let g:tagbar_left = 1
@@ -159,28 +189,9 @@ let g:tagbar_type_markdown = {
     \ ]
 \ }
 
-" Pencil
-augroup pencil
-	autocmd!
-	autocmd FileType markdown,mkd,md call pencil#init()
-		\ | call litecorrect#init()
-		\ | setlocal spell
-		\ | setlocal spl=en_us
-		\ | setlocal linebreak
-		\ | setlocal wrap
-		\ | let g:pencil#softDetectSample = 30
-	    \ | let g:pencil#wrapModeDefault = 'soft'
-	    \ | let g:airline_section_x = '%{PencilMode()}'
-	autocmd FileType text call pencil#init({'wrap': 'hard'})
-		\ | call litecorrect#init()
-		\ | setlocal linebreak
-		\ | setlocal wrap
-		\ | setlocal spell
-		\ | setlocal spl=en_us
-		\ | setlocal tw=80
-	    \ | let g:pencil#wrapModeDefault = 'soft'
-	    \ | let g:airline_section_x = '%{PencilMode()}'
-augroup END
+" Misc
+autocmd Filetype sourcepawn setlocal makeprg=$HOME/sm/scripting/spcomp\ %
 
-" YCM
-" let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
+function! StripWhitespace()
+	:%s/\s\+$//ge
+endfunction
