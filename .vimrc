@@ -20,6 +20,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'nvie/vim-flake8'
 Plugin 'Raimondi/delimitMate'
 Plugin 'tweekmonster/braceless.vim'
+Plugin 'Yggdroot/indentLine'
 
 " Markdown writing
 " Plugin 'junegunn/goyo.vim'
@@ -58,7 +59,7 @@ set autoindent
 set backspace=indent,eol,start
 set encoding=utf-8
 set list
-set listchars=tab:\|\ ,eol:¬,trail:·
+set listchars=tab:\|\ ,eol:↩,trail:·
 set mouse=
 set nu
 set scrolloff=4
@@ -67,6 +68,7 @@ set smarttab
 set tabstop=4
 set wildmenu
 set wildmode=longest,list
+set showmode
 
 " Colorscheme related
 set t_Co=256
@@ -85,6 +87,12 @@ nn <C-tab> :tabnext<CR>
 nn <C-S-tab> :tabprevious<CR>
 nn <C-t> :tabnew<CR>
 nn <Leader>cc :tabclose<CR>
+nn <Leader>j :res -5<CR>
+nn <Leader>k :res +5<CR>
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
 
 " Change gvim font and toolbar options
 if has("gui_running")
@@ -96,6 +104,28 @@ endif
 set foldmethod=indent
 set foldnestmax=5
 set nofoldenable
+
+" Abbreviations
+iab :equiv: ≡
+iab :exists: ∃
+iab :forall: ∀
+iab :elemof: ∈
+iab :neg: ¬
+iab :and: ∧
+iab :or: ∨
+iab :union: ∪
+iab :xsect: ∩
+iab :tfore: ∴
+iab :lteq: ≤
+iab :gteq: ≥
+iab :alpha: α
+iab :beta: β
+iab :lambda: λ
+iab :^2: ²
+iab :+-: ±
+iab :deg: °
+iab :imply: →
+iab <expr> currdate strftime("%Y-%m-%d")
 
 " Markdown
 let g:vim_markdown_frontmatter=1
@@ -129,6 +159,10 @@ endfunction
 autocmd FileType markdown,text,mkd,md call Pencil()
 
 " Python
+let g:indentLine_leaderSpaceEnabled = 1
+let g:indentLine_leaderSpaceChar = '.'
+let g:indentLine_char = '|'
+let g:indentLine_fileType = ['python', 'py']
 function! Python()
 	setl expandtab smartindent tw=79
 	let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
