@@ -2,55 +2,59 @@ set shell=/bin/bash
 
 " Required
 set nocompatible
-filetype off
 
 " Vundle
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+set runtimepath^=~/.vim/bundle/neobundle.vim/
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 " General plugins
-Plugin 'gmarik/Vundle.vim'
-Plugin 'itchyny/lightline.vim'
-Plugin 'bling/vim-bufferline'
-Plugin 'majutsushi/tagbar'
-Plugin 'tpope/vim-surround'
-Plugin 'SirVer/ultisnips'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'tpope/vim-fugitive'
-Plugin 'nvie/vim-flake8'
-Plugin 'Raimondi/delimitMate'
-Plugin 'tweekmonster/braceless.vim'
-Plugin 'Yggdroot/indentLine'
+NeoBundle 'gmarik/Vundle.vim'
+NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'bling/vim-bufferline'
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'junegunn/vim-easy-align'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'nvie/vim-flake8'
+NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'tweekmonster/braceless.vim'
+NeoBundle 'Yggdroot/indentLine'
+NeoBundle 'scrooloose/syntastic'
 
 " Markdown writing
-" Plugin 'junegunn/goyo.vim'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'reedes/vim-litecorrect'
-Plugin 'reedes/vim-pencil'
+" NeoBundle 'junegunn/goyo.vim'
+NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'reedes/vim-litecorrect'
+NeoBundle 'reedes/vim-pencil'
 
 " Colorschemes
-Plugin 'w0ng/vim-hybrid'
+NeoBundle 'w0ng/vim-hybrid'
 
 " Requires extra packages
-" Plugin 'Valloric/YouCompleteMe'
-Plugin 'davidhalter/jedi-vim'
+" NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'davidhalter/jedi-vim'
 
 " Enable only if YCM is not installed
-Plugin 'ervandew/supertab'
+NeoBundle 'ervandew/supertab'
 
 " Go
-Plugin 'nsf/gocode', {'rtp': 'vim/'}
+NeoBundle 'nsf/gocode', {'rtp': 'vim/'}
+NeoBundle 'fatih/vim-go'
 
 " Webdev
-" Plugin 'ap/vim-css-color' 
-" Plugin 'hail2u/vim-css3-syntax'
-" Plugin 'othree/html5.vim'
-" Plugin 'shawncplus/phpcomplete.vim'
-Plugin 'Glench/Vim-Jinja2-Syntax'
-Plugin 'mattn/emmet-vim'
+NeoBundleLazy 'ap/vim-css-color' 
+NeoBundleLazy 'hail2u/vim-css3-syntax'
+NeoBundleLazy 'othree/html5.vim'
+NeoBundleLazy 'shawncplus/phpcomplete.vim'
+NeoBundleLazy 'mattn/emmet-vim'
+NeoBundleLazy 'Glench/Vim-Jinja2-Syntax'
 
 " End
-call vundle#end()
+" call vundle#end()
+call neobundle#end()
+NeoBundleCheck
 
 " Basics
 filetype plugin indent on
@@ -82,9 +86,23 @@ let &colorcolumn=join(range(79,999),",") " highlight past 80 col
 set cursorline
 set cursorcolumn
 
+" Golang
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_fmt_command = "goimports"
+let g:go_play_open_browser = 0
+" Enable if using syntastic
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
 " Tabs & Buffers
-nn <C-tab> :tabnext<CR>
-nn <C-S-tab> :tabprevious<CR>
+nn tf :tabfirst<CR>
+nn tn :tabn<CR>
+nn tp :tabp<CR>
 nn <C-t> :tabnew<CR>
 nn <Leader>cc :tabclose<CR>
 nn <Leader>j :res -5<CR>
@@ -223,9 +241,13 @@ let g:tagbar_type_markdown = {
     \ ]
 \ }
 
+" Syntastic
+let g:syntastic_check_on_wq = 1
+
 " Misc
 autocmd Filetype sourcepawn setlocal makeprg=$HOME/sm/scripting/spcomp\ %
 
 function! StripWhitespace()
 	:%s/\s\+$//ge
 endfunction
+command! -nargs=0 Strip call StripWhitespace()
