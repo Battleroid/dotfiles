@@ -3,12 +3,12 @@ set shell=/bin/bash
 " Required
 set nocompatible
 
-" Vundle
+" NeoBundle
 set runtimepath^=~/.vim/bundle/neobundle.vim/
 call neobundle#begin(expand('~/.vim/bundle/'))
 
 " General plugins
-NeoBundle 'gmarik/Vundle.vim'
+NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'bling/vim-bufferline'
 NeoBundle 'majutsushi/tagbar'
@@ -52,7 +52,6 @@ NeoBundleLazy 'mattn/emmet-vim'
 NeoBundleLazy 'Glench/Vim-Jinja2-Syntax'
 
 " End
-" call vundle#end()
 call neobundle#end()
 NeoBundleCheck
 
@@ -124,25 +123,6 @@ set foldnestmax=5
 set nofoldenable
 
 " Abbreviations
-iab :equiv: ≡
-iab :exists: ∃
-iab :forall: ∀
-iab :elemof: ∈
-iab :neg: ¬
-iab :and: ∧
-iab :or: ∨
-iab :union: ∪
-iab :xsect: ∩
-iab :tfore: ∴
-iab :lteq: ≤
-iab :gteq: ≥
-iab :alpha: α
-iab :beta: β
-iab :lambda: λ
-iab :^2: ²
-iab :+-: ±
-iab :deg: °
-iab :imply: →
 iab <expr> currdate strftime("%Y-%m-%d")
 
 " Markdown
