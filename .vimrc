@@ -25,10 +25,12 @@ Plug 'scrooloose/syntastic'
 " Plug 'junegunn/goyo.vim'
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'reedes/vim-litecorrect', {'for': ['text', 'markdown']}
-Plug 'reedes/vim-pencil'
+Plug 'reedes/vim-pencil', {'for': ['text', 'markdown', 'latex']}
 
 " Colorschemes
 Plug 'w0ng/vim-hybrid'
+Plug 'marlun/vim-starwars'
+Plug 'endel/vim-github-colorscheme'
 
 " Requires extra packages
 " Plug 'Valloric/YouCompleteMe'
