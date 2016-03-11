@@ -3,57 +3,54 @@ set shell=/bin/bash
 " Required
 set nocompatible
 
-" NeoBundle
-set runtimepath^=~/.vim/bundle/neobundle.vim/
-call neobundle#begin(expand('~/.vim/bundle/'))
+" Plug start
+call plug#begin('~/.vim/plugged')
 
 " General plugins
-NeoBundle 'Shougo/neobundle.vim'
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'bling/vim-bufferline'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'SirVer/ultisnips'
-NeoBundle 'junegunn/vim-easy-align'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'nvie/vim-flake8'
-NeoBundle 'Raimondi/delimitMate'
-NeoBundle 'tweekmonster/braceless.vim'
-NeoBundle 'Yggdroot/indentLine'
-NeoBundle 'scrooloose/syntastic'
+Plug 'itchyny/lightline.vim'
+Plug 'bling/vim-bufferline'
+Plug 'majutsushi/tagbar'
+Plug 'tpope/vim-surround'
+Plug 'SirVer/ultisnips'
+Plug 'junegunn/vim-easy-align'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'nvie/vim-flake8'
+Plug 'Raimondi/delimitMate'
+Plug 'tweekmonster/braceless.vim', {'for': 'python'}
+Plug 'Yggdroot/indentLine'
+Plug 'scrooloose/syntastic'
 
 " Markdown writing
-" NeoBundle 'junegunn/goyo.vim'
-NeoBundle 'plasticboy/vim-markdown'
-NeoBundle 'reedes/vim-litecorrect'
-NeoBundle 'reedes/vim-pencil'
+" Plug 'junegunn/goyo.vim'
+Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+Plug 'reedes/vim-litecorrect', {'for': ['text', 'markdown']}
+Plug 'reedes/vim-pencil'
 
 " Colorschemes
-NeoBundle 'w0ng/vim-hybrid'
+Plug 'w0ng/vim-hybrid'
 
 " Requires extra packages
-" NeoBundle 'Valloric/YouCompleteMe'
-NeoBundle 'davidhalter/jedi-vim'
+" Plug 'Valloric/YouCompleteMe'
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
 
 " Enable only if YCM is not installed
-NeoBundle 'ervandew/supertab'
+Plug 'ervandew/supertab'
 
 " Go
-NeoBundle 'nsf/gocode', {'rtp': 'vim/'}
-NeoBundle 'fatih/vim-go'
+Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+Plug 'fatih/vim-go', {'for': 'go'}
 
 " Webdev
-NeoBundleLazy 'ap/vim-css-color' 
-NeoBundleLazy 'hail2u/vim-css3-syntax'
-NeoBundleLazy 'othree/html5.vim'
-NeoBundleLazy 'shawncplus/phpcomplete.vim'
-NeoBundleLazy 'mattn/emmet-vim'
-NeoBundleLazy 'Glench/Vim-Jinja2-Syntax'
+Plug 'ap/vim-css-color' , {'for': 'css'}
+Plug 'hail2u/vim-css3-syntax', {'for': 'css'}
+Plug 'othree/html5.vim', {'for': 'html'}
+Plug 'mattn/emmet-vim', {'for': 'html'}
+Plug 'shawncplus/phpcomplete.vim', {'for': 'php'}
+Plug 'Glench/Vim-Jinja2-Syntax'
 
 " End
-call neobundle#end()
-NeoBundleCheck
+call plug#end()
 
 " Basics
 filetype plugin indent on
@@ -98,7 +95,7 @@ let g:go_play_open_browser = 0
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
-" Tabs & Buffers
+" Tabs & Buffers, replaced by wintabs
 nn tf :tabfirst<CR>
 nn tn :tabn<CR>
 nn tp :tabp<CR>
@@ -149,8 +146,9 @@ let g:SuperTabDefaultCompletionType = 'context'
 let g:jedi#popup_on_dot = 0
 
 " Pencil
+let g:pencil#wrapModeDefault = 'hard'
 function! Pencil()
-	setl linebreak wrap spell spl=en_us tw=80
+	setl linebreak wrap spell spl=en_us tw=74
 	call pencil#init({'wrap': 'hard'})
 	call litecorrect#init()
 endfunction
