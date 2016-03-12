@@ -21,11 +21,12 @@ Plug 'tweekmonster/braceless.vim', {'for': 'python'}
 Plug 'Yggdroot/indentLine'
 Plug 'scrooloose/syntastic'
 
-" Markdown writing
+" Writing
 " Plug 'junegunn/goyo.vim'
-Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+" Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+" Plug 'reedes/vim-pencil', {'for': ['text', 'markdown', 'latex']}
 Plug 'reedes/vim-litecorrect', {'for': ['text', 'markdown']}
-Plug 'reedes/vim-pencil', {'for': ['text', 'markdown', 'latex']}
+Plug 'gabrielelana/vim-markdown', {'for': 'markdown'}
 
 " Colorschemes
 Plug 'w0ng/vim-hybrid'
@@ -148,13 +149,25 @@ let g:SuperTabDefaultCompletionType = 'context'
 let g:jedi#popup_on_dot = 0
 
 " Pencil
-let g:pencil#wrapModeDefault = 'hard'
-function! Pencil()
-	setl linebreak wrap spell spl=en_us tw=74
-	call pencil#init({'wrap': 'hard'})
-	call litecorrect#init()
-endfunction
-autocmd FileType markdown,text,mkd,md call Pencil()
+" let g:pencil#wrapModeDefault = 'hard'
+" function! Pencil()
+" 	setl linebreak wrap spell spl=en_us tw=74
+" 	call pencil#init({'wrap': 'hard'})
+" 	call litecorrect#init()
+" endfunction
+" autocmd FileType markdown,text,mkd,md call Pencil()
+
+" Writing
+augroup writing
+	autocmd!
+	autocmd FileType markdown,text setl
+				\ tw=79
+				\ wrap
+				\ spell
+				\ spl=en_us
+				\ linebreak
+	autocmd FileType markdown,text :call litecorrect#init()
+augroup END
 
 " Python
 let g:indentLine_leaderSpaceEnabled = 1
