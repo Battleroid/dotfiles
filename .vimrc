@@ -15,7 +15,7 @@ Plug 'SirVer/ultisnips'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'nvie/vim-flake8'
+Plug 'nvie/vim-flake8', {'for': 'python'}
 Plug 'Raimondi/delimitMate'
 Plug 'tweekmonster/braceless.vim', {'for': 'python'}
 Plug 'Yggdroot/indentLine'
@@ -50,7 +50,7 @@ Plug 'hail2u/vim-css3-syntax', {'for': 'css'}
 Plug 'othree/html5.vim', {'for': 'html'}
 Plug 'mattn/emmet-vim', {'for': 'html'}
 Plug 'shawncplus/phpcomplete.vim', {'for': 'php'}
-Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'Glench/Vim-Jinja2-Syntax', {'for': 'html'}
 
 " End
 call plug#end()
