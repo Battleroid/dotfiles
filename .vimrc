@@ -19,7 +19,7 @@ Plug 'nvie/vim-flake8'
 Plug 'Raimondi/delimitMate'
 Plug 'tweekmonster/braceless.vim', {'for': 'python'}
 Plug 'Yggdroot/indentLine'
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
 
 " Writing
 " Plug 'junegunn/goyo.vim'
@@ -30,8 +30,8 @@ Plug 'gabrielelana/vim-markdown', {'for': 'markdown'}
 
 " Colorschemes
 Plug 'w0ng/vim-hybrid'
-Plug 'marlun/vim-starwars'
-Plug 'endel/vim-github-colorscheme'
+" Plug 'marlun/vim-starwars'
+" Plug 'endel/vim-github-colorscheme'
 
 " Requires extra packages
 " Plug 'Valloric/YouCompleteMe'
@@ -72,6 +72,8 @@ set tabstop=4
 set wildmenu
 set wildmode=longest,list
 set showmode
+set undofile
+set undodir=~/.vim/undos
 
 " Colorscheme related
 set t_Co=256
@@ -161,11 +163,12 @@ let g:jedi#popup_on_dot = 0
 augroup writing
 	autocmd!
 	autocmd FileType markdown,text setl
-				\ tw=79
-				\ wrap
 				\ spell
 				\ spl=en_us
 				\ linebreak
+	autocmd FileType text setl
+				\ tw=79
+				\ wrap
 	autocmd FileType markdown,text :call litecorrect#init()
 augroup END
 
@@ -241,6 +244,6 @@ let g:syntastic_check_on_wq = 1
 autocmd Filetype sourcepawn setlocal makeprg=$HOME/sm/scripting/spcomp\ %
 
 function! StripWhitespace()
-	:%s/\s\+$//ge
+	:%s/\s\+$//e
 endfunction
 command! -nargs=0 Strip call StripWhitespace()
