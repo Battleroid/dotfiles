@@ -19,7 +19,7 @@ Plug 'nvie/vim-flake8', {'for': 'python'}
 Plug 'Raimondi/delimitMate'
 Plug 'tweekmonster/braceless.vim', {'for': 'python'}
 Plug 'Yggdroot/indentLine'
-" Plug 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 
 " Writing
 " Plug 'junegunn/goyo.vim'
@@ -51,6 +51,7 @@ Plug 'othree/html5.vim', {'for': 'html'}
 Plug 'mattn/emmet-vim', {'for': 'html'}
 Plug 'shawncplus/phpcomplete.vim', {'for': 'php'}
 Plug 'Glench/Vim-Jinja2-Syntax', {'for': 'html'}
+Plug 'tpope/vim-liquid', {'for': 'html'}
 
 " End
 call plug#end()
@@ -148,6 +149,9 @@ nmap ga <Plug>(EasyAlign)
 
 " Atuocompletion
 let g:SuperTabDefaultCompletionType = 'context'
+let g:SuperTabContextDefaultCompletionType = "<c-p>"
+let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
+let g:SuperTabContextDiscoverDiscovery = ["&omnifunc:<c-x><c-o>"]
 let g:jedi#popup_on_dot = 0
 
 " Pencil
@@ -179,8 +183,9 @@ let g:indentLine_char = '|'
 let g:indentLine_fileType = ['python', 'py']
 function! Python()
 	setl expandtab smartindent tw=79
-	let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
-	autocmd! FileType python BracelessEnable +indent +fold +highlight
+	" let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
+	autocmd! FileType python BracelessEnable +indent +fold +highlight +cc
+				\ call SuperTabChain(&omnifunc, "<c-x><c-o>")
 	autocmd! BufWritePost <buffer> call StripWhitespace()
 endfunction
 autocmd FileType python call Python()
