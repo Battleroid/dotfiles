@@ -52,6 +52,7 @@ Plug 'mattn/emmet-vim', {'for': 'html'}
 Plug 'shawncplus/phpcomplete.vim', {'for': 'php'}
 Plug 'Glench/Vim-Jinja2-Syntax', {'for': 'html'}
 Plug 'tpope/vim-liquid', {'for': 'html'}
+Plug 'godlygeek/tabular'
 
 " End
 call plug#end()
