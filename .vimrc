@@ -10,7 +10,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'bling/vim-bufferline'
 Plug 'majutsushi/tagbar'
-Plug 'tpope/vim-surround'
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
@@ -20,15 +19,12 @@ Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
 Plug 'klen/python-mode'
 Plug 'nvie/vim-flake8', {'for': 'python'}
-" Plug 'tweekmonster/braceless.vim', {'for': 'python'}
 
 " Writing
 Plug 'gabrielelana/vim-markdown', {'for': 'markdown'}
 
 " Colorschemes
 Plug 'w0ng/vim-hybrid'
-" Plug 'marlun/vim-starwars'
-" Plug 'endel/vim-github-colorscheme'
 
 " Requires extra packages
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
@@ -104,12 +100,6 @@ au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>e <Plug>(go-rename)
 
-" Tabs & Buffers, replaced by wintabs
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-
 " Change gvim font and toolbar options
 if has("gui_running")
 	set guioptions=-T
@@ -144,14 +134,9 @@ let g:SuperTabContextDiscoverDiscovery = ["&omnifunc:<c-x><c-o>"]
 let g:jedi#popup_on_dot = 0
 
 " Writing
-augroup writing
-	autocmd!
-	autocmd FileType markdown,text setlocal spell
-				\ spl=en_us
-				\ linebreak
-	" autocmd FileType markdown,text spl=en_us
-	" autocmd FileType markdown,text linebreak
-augroup END
+autocmd FileType markdown,text setlocal spell
+			\ spl=en_us
+			\ linebreak
 
 " Python
 let g:indentLine_leaderSpaceEnabled = 1
