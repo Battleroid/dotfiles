@@ -1,4 +1,8 @@
 #!/bin/bash
+if [ -n "`pgrep i3lock`" ]; then
+	exit
+fi
+
 IMAGE=$(mktemp --suffix=".png")
 scrot $IMAGE
 convert $IMAGE -blur 0x16 -scale 50% -scale 200% $IMAGE
