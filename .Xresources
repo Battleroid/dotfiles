@@ -1,13 +1,6 @@
 ! globals
-URxvt.font: xft:boxxy:antialias=false
 URxvt.cursorColor: white
-URxvt.perl-ext-common: default,matcher
-URxvt.url-launcher: /usr/bin/firefox
-URxvt.matcher.button: 1
-! URxvt.internalBorder: 3
-URxvt.scrollBar: none
 *cursorColor: white
 
 ! includes
 #include ".Xresources.d/rxvt"
-#include ".Xresources.d/rofi"
