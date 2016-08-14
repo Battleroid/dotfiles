@@ -44,10 +44,10 @@ set undodir=~/.vim/undos
 set laststatus=2
 
 " Colorscheme related
-set t_Co=256
+colorscheme hybrid
 let g:hybrid_use_Xresources=1
 set background=dark
-colorscheme hybrid
+set t_Co=256
 hi CursorLine cterm=NONE ctermbg=black
 set cursorline
 set cursorcolumn

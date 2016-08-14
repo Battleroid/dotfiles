@@ -1,3 +1,17 @@
+! font
+URxvt.font: xft:InputMono:size=10
+URxvt.lineSpace: 2
+URxvt.letterSpace: -1
+
+! misc
+URxvt.perl-ext-common: font-size
+URxvt.keysym.C-Up:     font-size:increase
+URxvt.keysym.C-Down:   font-size:decrease
+URxvt.keysym.C-S-Up:   font-size:incglobal
+URxvt.keysym.C-S-Down: font-size:decglobal
+URxvt.scrollBar: none
+URxvt.internalBorder: 3
+
 ! globals
 URxvt.cursorColor: white
 *cursorColor: white
@@ -21,3 +35,12 @@ URxvt.color6: #5E8D87
 URxvt.color14: #8ABEB7
 URxvt.color7: #707880
 URxvt.color15: #C5C8C6
+
+! rofi
+rofi.color-enabled: true
+rofi.color-window: #222326, argb:0002b36, argb:0000000
+rofi.color-normal: #222326, #9c9ea0, #323336, #4e5869, #e9ebed
+rofi.color-active: #e9ebed, #268bd2, #c5c5c5, #268bd2, #e9ebed
+rofi.color-urgent: #eaeaea, #dc322f, #c5c5c5, #dc322f, #eaeaea
+rofi.font: InputMono 10
+rofi.line-margin: 5
