@@ -1,6 +1,5 @@
 [global]
-	# font = tewi 9
-	font = InputMono 12
+	font = tewi 9
 	allow_markup = yes
 	sort = yes
 	alignment = left
