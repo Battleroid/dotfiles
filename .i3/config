@@ -8,9 +8,10 @@ font xft:tewi 9
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec dmenu_run
 # bindsym $mod+d exec i3-dmenu-desktop --dmenu="rofi -dmenu"
-bindsym $mod+d exec rofi -show run
+# bindsym $mod+d exec rofi -show run
+# bindsym $mod+d exec zsh -c "rofi -show run"
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
@@ -191,6 +192,9 @@ for_window [class="(?i)mplayer2"] floating enable
 for_window [class="(?i)mpv"] floating enable
 for_window [class="(?i)seafile.*"] floating enable
 
+# assignments
+assign [class="(?i)thunderbird"] 3
+
 # start
 exec nm-applet
 exec setxkbmap -option caps:escape
@@ -199,10 +203,12 @@ exec sh ~/.fehbg
 exec udiskie -tna
 exec volti
 exec xrdb -load ~/.Xresources
-exec xautolock -time 5 -detectsleep -locker /usr/local/bin/lock
 exec xss-lock -- /usr/bin/xautolock -locknow &
 exec unclutter -idle 2
 exec seafile-applet
 exec indicator-cpufreq
+
+# always restart (they check for existing processes)
+exec_always xautolock -time 5 -detectsleep -locker "/usr/local/bin/lock" # mpv cancels out xautolock for some reason
 exec_always dunst
 exec_always compton --config ~/.compton.conf
