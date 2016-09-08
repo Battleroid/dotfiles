@@ -5,7 +5,7 @@ ZSH_THEME="clean"
 plugins=(git)
 
 # Python
-# export PATH="$HOME/.pyenv/bin:$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 # eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 
@@ -18,6 +18,8 @@ plugins=(git)
 # export PATH=$PATH:$HOME/.gem/ruby/2.3.0/bin
 
 # Lastly
-# export PATH=$PATH:$HOME/bin
+opt_dir=(/opt/*/bin/*.sh)
+opt_path=$(printf "%s:" "${opt_dir[@]}")
+export PATH="${opt_path}/sbin/:${PATH}"
 source ~/.zaliases
 source $ZSH/oh-my-zsh.sh
