@@ -18,6 +18,7 @@ Plug 'othree/html5.vim'
 Plug 'mattn/emmet-vim'
 Plug 'w0ng/vim-hybrid'
 Plug 'davidhalter/jedi-vim', {'for': 'python'} " requires jedi
+Plug 'junegunn/goyo.vim'
 call plug#end()
 
 " Basics
