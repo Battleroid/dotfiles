@@ -1,7 +1,9 @@
 ! font
-URxvt.font: xft:InputMono:size=10
-URxvt.lineSpace: 2
+! URxvt.font: xft:InputMono:size=10
+! URxvt.font: xft:Fira Mono:size=10:style=Regular
+URxvt.font: xft:Roboto Mono:size=10:style=Regular
 URxvt.letterSpace: -1
+! URxvt.lineSpace: 0
 
 ! misc
 URxvt.perl-ext-common: font-size
@@ -11,6 +13,10 @@ URxvt.keysym.C-S-Up:   font-size:incglobal
 URxvt.keysym.C-S-Down: font-size:decglobal
 URxvt.scrollBar: none
 URxvt.internalBorder: 3
+
+! xpdf
+xpdf*antialias: yes
+xpdf*enableFreetype: yes
 
 ! globals
 URxvt.cursorColor: white

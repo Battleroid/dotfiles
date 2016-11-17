@@ -1,1 +1,3 @@
 alias tmux='TERM=xterm-256color tmux'
+alias feh='feh --scale-down --auto-zoom'
+alias aptup='apt list --upgradable'
