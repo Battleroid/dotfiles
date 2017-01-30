@@ -22,7 +22,7 @@ Plug 'scrooloose/syntastic'
 Plug 'mattn/emmet-vim'
 Plug 'davidhalter/jedi-vim', {'for': 'python'} " requires jedi
 Plug 'ervandew/supertab'
-Plug 'fatih/vim-go'
+" Plug 'fatih/vim-go'
 
 " Misc
 Plug 'othree/html5.vim'
@@ -32,6 +32,9 @@ Plug 'junegunn/goyo.vim'
 
 " Color
 Plug 'w0ng/vim-hybrid'
+Plug 'robertmeta/nofrils'
+Plug 'morhetz/gruvbox'
+Plug 'kristijanhusak/vim-hybrid-material'
 call plug#end()
 
 " Basics
@@ -41,7 +44,7 @@ set autoindent
 set backspace=indent,eol,start
 set encoding=utf-8
 set list
-set listchars=tab:\|\ ,eol:<,trail:·
+set listchars=tab:\|\ ,eol:←,trail:·
 set mouse=
 set nu
 set scrolloff=4
