@@ -16,25 +16,16 @@ Plug 'airblade/vim-gitgutter'
 
 " Syntax, checking, etc
 Plug 'nvie/vim-flake8', {'for': 'python'}
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
 
 " Autocomplete
-Plug 'mattn/emmet-vim'
 Plug 'davidhalter/jedi-vim', {'for': 'python'} " requires jedi
 Plug 'ervandew/supertab'
 " Plug 'fatih/vim-go'
 
-" Misc
-Plug 'othree/html5.vim'
-Plug 'godlygeek/tabular'
-Plug 'gabrielelana/vim-markdown', {'for': 'markdown'}
-Plug 'junegunn/goyo.vim'
-
 " Color
-Plug 'w0ng/vim-hybrid'
-Plug 'robertmeta/nofrils'
+Plug 'robertmeta/nofrils', {'for': ['markdown', 'text'] }
 Plug 'morhetz/gruvbox'
-Plug 'kristijanhusak/vim-hybrid-material'
 call plug#end()
 
 " Basics
@@ -62,10 +53,12 @@ set autoread
 set splitbelow
 set splitright
 set shortmess+=I
+set autoread
+set modeline
+set modelines=5
 
 " Colorscheme related
-colorscheme hybrid
-let g:hybrid_use_Xresources=1
+colorscheme gruvbox
 set background=dark
 set t_Co=256
 hi CursorLine cterm=NONE ctermbg=black
@@ -76,30 +69,30 @@ set cursorcolumn
 set foldmethod=indent
 set foldnestmax=5
 set nofoldenable
-
-" Markdown
-let g:vim_markdown_frontmatter=1
-let g:markdown_fenced_languages = ['python', 'java']
+" TODO: set keys for folding easier
 
 " Misc autocmds
 autocmd FileType python map <buffer> <F9> :call Flake8()<CR>
 autocmd FileType markdown,text setlocal spell
 			\ spl=en_us
 			\ linebreak
+autocmd FileType json setlocal shiftwidth=2 tabstop=2
+autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
+" TODO: is expandtab necessary?
+autocmd BufRead,BufNewFile Dockerfile,Dockerfile.tmpl setlocal ft=Dockerfile expandtab
 
 " Fugitive
 nn <space>ga :Git add %:p<CR><CR>
 nn <space>gs :Gstatus<CR>
 nn <space>gc :Gcommit -v -q<CR><CR>
-nn <space>gw :Gwrite<CR><CR>
-
-" Syntastic
-let g:syntastic_check_on_wq = 1
 
 " Supertab
+" TODO: Chain with c-o, context doesn't always work, needs to be
+" context, c-o, then c-p or c-n
 let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabLongestEnhanced = 1
-let g:SuperTabLongestHighlight = 0
+" let g:SuperTabDefaultCompletionType = "<C-n>"
+" let g:SuperTabLongestEnhanced = 1
+" let g:SuperTabLongestHighlight = 0
 " autocmd FileType *
 "   \ if &omnifunc != '' |
 "   \   call SuperTabChain(&omnifunc, "<c-p>") |
@@ -107,12 +100,12 @@ let g:SuperTabLongestHighlight = 0
 "   \ endif
 
 " Go
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_types = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_fmt_command = "goimports"
-let g:go_fmt_fail_silently = 1
-let g:go_play_open_browser = 0
+" let g:go_highlight_functions = 1
+" let g:go_highlight_methods = 1
+" let g:go_highlight_fields = 1
+" let g:go_highlight_types = 1
+" let g:go_highlight_operators = 1
+" let g:go_highlight_build_constraints = 1
+" let g:go_fmt_command = "goimports"
+" let g:go_fmt_fail_silently = 1
+" let g:go_play_open_browser = 0

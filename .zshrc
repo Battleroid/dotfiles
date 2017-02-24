@@ -1,25 +1,30 @@
-# OMZ
-export ZSH=/home/casey/.oh-my-zsh
-export EDITOR=vim
-ZSH_THEME="clean"
-plugins=(git)
+# zplug
+export ZPLUG_HOME=/Users/cweed/.homebrew/opt/zplug
+source $ZPLUG_HOME/init.zsh
 
-# Python
-export PATH="$HOME/.local/bin:$PATH"
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
+zplug "zsh-users/zsh-syntax-highlighting", use:zsh-syntax-highlighting.zsh, defer:3
+zplug "zsh-users/zsh-completions", use:zsh-completions.zsh
+zplug "zsh-users/zsh-autosuggestions", use:zsh-autosuggestions.zsh
+zplug "zsh-users/zsh-history-substring-search", use:zsh-history-substring-search.zsh, defer:3
 
-# Go
-export GOROOT=/usr/local/go
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+# theme and omz libs come last to fix theme issues
+zplug "themes/clean", from:oh-my-zsh, as:theme
 
-# Ruby
-# export PATH=$PATH:$HOME/.gem/ruby/2.3.0/bin
+# required from omz to make themes and other omz stuff no spaz out
+zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh"
 
-# Lastly
-opt_dir=(/opt/*/bin/*.sh)
-opt_path=$(printf "%s:" "${opt_dir[@]}")
-export PATH="${opt_path}/sbin/:${PATH}"
+# just install via homebrew or pkg manager
+# zplug "peco/peco", as:command, from:gh-r, rename-to:peco
+
+if ! zplug check; then
+    zplug clean
+    zplug install
+    zplug load --verbose
+    autoload -U compinit && compinit
+else
+    zplug load
+fi
+
+# final, rvm needs to be at end, why is rvm so particular and annoying?
 source ~/.zaliases
-source $ZSH/oh-my-zsh.sh
+export PATH="$HOME/.rvm/bin:$PATH"
