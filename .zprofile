@@ -15,5 +15,8 @@ eval "$(pyenv init -)" ; eval "$(pyenv virtualenv-init -)"
 # direnv hook
 eval "$(direnv hook zsh)"
 
+# misc
+# keychain --timeout 360 -q
+
 # finish
 source ~/.zshrc

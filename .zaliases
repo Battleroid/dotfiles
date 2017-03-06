@@ -7,11 +7,15 @@ alias wtfzsh="vim ~/.zshrc"
 alias read="vim -R"
 alias updatevim="vim +PlugUpdate +q +q"
 alias reloadaliases="source ~/.zaliases"
+alias tmux="tmux -2"
+# alias tmux="TERM=screen-256color tmux -2"
+alias fabtime="pyenv shell fab"
+alias top=htop
 
 # Functions
+function epochtodate { date -d @$1 }
 function curljq { curl -s $1 | jq } # no more curl ... | jq
 function epoch { date +%s } # no more 'what is the date format for epoch'
-function epochtodate { date -d@$1 } # no more what is the date
 function ctx { http --session general --auth cweed $@ }
 function joinby { local IFS="$1"; shift; echo "$*"; }
 function dock {
