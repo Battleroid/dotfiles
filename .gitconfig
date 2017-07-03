@@ -1,6 +1,0 @@
-[alias]
-    l = log --oneline
-    nb = checkout -b
-    lastchange = diff HEAD
-    s = status
-    pom = push origin master

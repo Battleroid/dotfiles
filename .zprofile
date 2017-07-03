@@ -1,22 +1,21 @@
-# [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
+# Setup pyenv
+if [ -d "$HOME/.pyenv" ]; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
 
-# homebrew lib
-export LIBRARY_PATH=~/.homebrew/lib:$LIBRARY_PATH
+# Setup go
+if which go &>/dev/null; then
+    mkdir -p "$HOME/go/bin" 2>/dev/null
+    mkdir -p "$HOME/go/pkg" 2>/dev/null
+    mkdir -p "$HOME/go/src" 2>/dev/null
+    export GOPATH="$HOME/go"
+    export PATH="$GOPATH/bin:$PATH"
+fi
 
-# ruby/rvm
-export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
-export PATH=~/.homebrew/bin:/Users/cweed/.gem/ruby/2.0.0/bin:$PATH
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-# python/pyenv
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
-eval "$(pyenv init -)" ; eval "$(pyenv virtualenv-init -)"
-
-# direnv hook
-eval "$(direnv hook zsh)"
-
-# misc
-# keychain --timeout 360 -q
-
-# finish
-source ~/.zshrc
+# Setup direnv
+if which direnv &>/dev/null; then
+    eval "$(direnv hook zsh)"
+fi

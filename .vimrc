@@ -1,3 +1,4 @@
+" Avoid issues with using zsh
 set shell=/bin/bash
 
 " Required
@@ -22,7 +23,7 @@ Plug 'davidhalter/jedi-vim'
 " Plug 'fatih/vim-go'
 
 " Color
-Plug 'morhetz/gruvbox'
+Plug 'w0ng/vim-hybrid'
 call plug#end()
 
 " Basics
@@ -44,7 +45,7 @@ set wildmenu
 set wildmode=longest,list
 set showmode
 set undofile
-set undodir=~/.vim/undos
+set undodir=~/.vim/undo
 set laststatus=2
 set expandtab
 set autoread
@@ -57,24 +58,23 @@ set modelines=5
 set foldmethod=indent
 set foldnestmax=5
 set nofoldenable
-set termguicolors
+" set termguicolors
 
 " Colorscheme related
-colorscheme gruvbox
+" set t_Co=256
+set t_Co=16
 set background=dark
-set t_Co=256
+colorscheme hybrid
 hi CursorLine cterm=NONE ctermbg=black
 set cursorline
 set cursorcolumn
 
 " Misc autocmds
-autocmd FileType python map <buffer> <F9> :call Flake8()<CR>
 autocmd FileType markdown,text setlocal spell spl=en_us linebreak
 autocmd FileType json setlocal shiftwidth=2 tabstop=2
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 autocmd BufRead,BufNewFile Dockerfile,Dockerfile.tmpl setlocal ft=Dockerfile expandtab
 autocmd BufRead,BufNewFile notes setlocal ft=markdown
-" autocmd BufWinEnter,FileType markdown,text colorscheme nofrils-light
 
 " Fugitive
 nn <space>ga :Git add %:p<CR><CR>
