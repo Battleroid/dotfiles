@@ -10,17 +10,16 @@ call plug#begin('~/.vim/plugged')
 " Status
 Plug 'itchyny/lightline.vim'
 Plug 'bling/vim-bufferline'
-Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 " Linting
 Plug 'nvie/vim-flake8', {'for': 'python'}
-" Plug 'scrooloose/syntastic'
 
 " Completion
 Plug 'lifepillar/vim-mucomplete'
 Plug 'davidhalter/jedi-vim'
 " Plug 'fatih/vim-go'
+Plug 'junegunn/goyo.vim'
 
 " Color
 Plug 'w0ng/vim-hybrid'
@@ -70,23 +69,19 @@ set cursorline
 set cursorcolumn
 
 " Misc autocmds
-autocmd FileType markdown,text setlocal spell spl=en_us linebreak
+autocmd FileType markdown,text setlocal spell linebreak
 autocmd FileType json setlocal shiftwidth=2 tabstop=2
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 autocmd BufRead,BufNewFile Dockerfile,Dockerfile.tmpl setlocal ft=Dockerfile expandtab
 autocmd BufRead,BufNewFile notes setlocal ft=markdown
 
-" Fugitive
-nn <space>ga :Git add %:p<CR><CR>
-nn <space>gs :Gstatus<CR>
-nn <space>gc :Gcommit -v -q<CR><CR>
-
 " Completion
-set completeopt+=longest,menuone,noinsert,noselect
+" set completeopt+=longest,menuone,noinsert,noselect
+set completeopt+=menuone,noselect
 set shortmess+=c
-" set shortmess-=preview
 let g:mucomplete#enable_auto_at_startup = 1
 let g:jedi#popup_on_dot = 0
+let g:mucomplete#chains= { 'markdown': ['file', 'uspl'] }
 
 " Go
 " let g:go_highlight_functions = 1
