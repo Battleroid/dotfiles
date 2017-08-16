@@ -34,7 +34,7 @@ set list
 set listchars=tab:\|\ ,eol:←,trail:·
 set mouse=a
 set nu
-set scrolloff=4
+set scrolloff=10
 set shiftwidth=4
 set smarttab
 set smartindent
@@ -60,20 +60,25 @@ set nofoldenable
 " set termguicolors
 
 " Colorscheme related
-" set t_Co=256
-set t_Co=16
-set background=dark
-colorscheme hybrid
-hi CursorLine cterm=NONE ctermbg=black
 set cursorline
 set cursorcolumn
+color hybrid
+hi CursorLine cterm=NONE ctermbg=black
+set background=dark
+if has("gui_running")
+    set guifont=Hack:h16
+endif
 
 " Misc autocmds
-autocmd FileType markdown,text setlocal spell linebreak
-autocmd FileType json setlocal shiftwidth=2 tabstop=2
-autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
+autocmd BufRead,BufNewFile *.conf setlocal expandtab sw=2 ts=2 ft=conf
+autocmd FileType python map <buffer> <F9> :call Flake8()<CR>
+autocmd FileType markdown,text setlocal spell spl=en_us linebreak
+autocmd FileType yaml,ruby,json setlocal expandtab shiftwidth=2 tabstop=2
+autocmd BufRead,BufNewFile Jenkinsfile setlocal expandtab sw=2 ts=2
 autocmd BufRead,BufNewFile Dockerfile,Dockerfile.tmpl setlocal ft=Dockerfile expandtab
 autocmd BufRead,BufNewFile notes setlocal ft=markdown
+autocmd FileType python setlocal equalprg=yapf
+" autocmd BufWinEnter,FileType markdown,text colorscheme nofrils-light
 
 " Completion
 " set completeopt+=longest,menuone,noinsert,noselect
