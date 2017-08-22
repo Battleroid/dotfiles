@@ -1,3 +1,9 @@
+# Homebrew relevant
+if [ -d "$HOME/.homebrew" ]; then
+    export PATH=$HOME/.homebrew/bin:$PATH
+    export LIBRARY_PATH=$HOME/.homebrew/lib:$LIBRARY_PATH
+fi
+
 # Setup pyenv
 if [ -d "$HOME/.pyenv" ]; then
     export PYENV_ROOT="$HOME/.pyenv"
@@ -18,4 +24,24 @@ fi
 # Setup direnv
 if which direnv &>/dev/null; then
     eval "$(direnv hook zsh)"
+fi
+
+# Add home bin
+if [ -d "$HOME/bin" ]; then
+    export PATH="$PATH:$HOME/bin"
+fi
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+if [ -d "$HOME/.rvm" ]; then
+    export PATH="$PATH:$HOME/.rvm/bin"
+    [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+fi
+
+if [ -f "$HOME/.kube.zsh.inc" ]; then
+    source $HOME/.kube.zsh.inc
+fi
+
+# rust (cargo)
+if which cargo &>/dev/null; then
+    export PATH="$HOME/.cargo/bin:$PATH"
 fi
