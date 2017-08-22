@@ -18,14 +18,9 @@ Plug 'nvie/vim-flake8', {'for': 'python'}
 " Completion
 Plug 'davidhalter/jedi-vim'
 Plug 'fatih/vim-go'
+Plug 'plasticboy/vim-markdown'
 Plug 'junegunn/goyo.vim'
-
-" Completion if vim8 / neovim
-if has('nvim')
-    Plug 'roxma/nvim-completion-manager'
-else
-    Plug 'lifepillar/vim-mucomplete'
-end
+Plug 'roxma/nvim-completion-manager'
 
 " Color
 Plug 'w0ng/vim-hybrid'
@@ -63,6 +58,7 @@ set modelines=5
 set foldmethod=indent
 set foldnestmax=5
 set nofoldenable
+set termguicolors
 
 " Colorscheme related
 " set t_Co=16
@@ -82,18 +78,12 @@ autocmd BufRead,BufNewFile notes setlocal ft=markdown
 " Completion
 " set completeopt+=longest,menuone,noinsert,noselect
 set shortmess+=c
+set conceallevel=0
+let g:vim_markdown_frontmatter=1
+inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 
-" neovim bits
-if has('nvim')
-    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-    set termguicolors
-else
-    set completeopt+=menuone,noselect
-    let g:mucomplete#enable_auto_at_startup = 1
-    let g:jedi#popup_on_dot = 0
-    let g:mucomplete#chains= { 'markdown': ['file', 'uspl'] }
-end
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Go
 let g:go_highlight_functions = 1
