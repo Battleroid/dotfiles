@@ -12,13 +12,11 @@ Plug 'itchyny/lightline.vim'
 Plug 'bling/vim-bufferline'
 Plug 'airblade/vim-gitgutter'
 
-" Linting
-Plug 'nvie/vim-flake8', {'for': 'python'}
-
-" Completion
+" Completion, lint, etc
 Plug 'davidhalter/jedi-vim'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'plasticboy/vim-markdown'
+Plug 'rodjek/vim-puppet'
 Plug 'junegunn/goyo.vim'
 Plug 'roxma/nvim-completion-manager'
 
@@ -58,15 +56,15 @@ set modelines=5
 set foldmethod=indent
 set foldnestmax=5
 set nofoldenable
-set termguicolors
+set incsearch
+set nohlsearch
 
 " Colorscheme related
-" set t_Co=16
-set background=dark
 colorscheme hybrid
-hi CursorLine cterm=NONE ctermbg=black
+set background=dark
 set cursorline
 set cursorcolumn
+hi CursorLine cterm=NONE ctermbg=black
 
 " Misc autocmds
 autocmd FileType markdown,text setlocal spell linebreak
@@ -76,14 +74,14 @@ autocmd BufRead,BufNewFile Dockerfile,Dockerfile.tmpl setlocal ft=Dockerfile exp
 autocmd BufRead,BufNewFile notes setlocal ft=markdown
 
 " Completion
-" set completeopt+=longest,menuone,noinsert,noselect
+set completeopt+=menuone,noinsert,noselect
 set shortmess+=c
-set conceallevel=0
-let g:vim_markdown_frontmatter=1
-inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
-
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'jedi')
+let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'mistune')
+let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'psutil')
+let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'setproctitle')
 
 " Go
 let g:go_highlight_functions = 1
