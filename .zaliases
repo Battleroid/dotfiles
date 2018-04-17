@@ -1,1 +1,21 @@
-alias tmux='tmux -2'
+# vim: set ft=bash
+
+# aliases
+alias rake="noglob rake"
+alias kc="kubectl"
+alias vim='nvim'
+alias pip-compile='pip-compile --no-index'
+alias fix-my-broken-tty='stty sane'
+alias vimrc='vim ~/.config/nvim/init.vim'
+alias icat='kitty icat --align left'
+alias ssh-no-check='ssh -o "StrictHostKeyChecking no"'
+alias sl=ls
+
+# funcs
+ff () {
+    find . -iname "*${1}*"
+}
+
+setup-pyenv () {
+    pip install --upgrade bpython neovim jedi mistune psutil setproctitle yapf pip-tools isort pylint flake8 ipython httpie $@
+}

@@ -1,0 +1,155 @@
+## NOTE(koekeishiya): A list of all built-in modifier and literal keywords can
+#                     be found at https://github.com/koekeishiya/skhd/issues/1
+#
+#                     A hotkey is written according to the following rules:
+#
+#                       hotkey   = <keysym> ':' <command> |
+#                                  <keysym> '->' ':' <command>
+#
+#                       keysym   = <mod> '-' <key> | <key>
+#
+#                       mod      = 'built-in mod keyword' | <mod> '+' <mod>
+#
+#                       key      = <literal> | <keycode>
+#
+#                       literal  = 'single letter or built-in keyword'
+#
+#                       keycode  = 'apple keyboard kVK_<Key> values (0x3C)'
+#
+#                       ->       = keypress is not consumed by skhd
+#
+#                       command  = command is executed through '$SHELL -c' and
+#                                  follows valid shell syntax. if the $SHELL environment
+#                                  variable is not set, it will default to '/bin/bash'.
+#                                  when bash is used, the ';' delimeter can be specified
+#                                  to chain commands.
+#
+#                                  to allow a command to extend into multiple lines,
+#                                  prepend '\' at the end of the previous line.
+#
+#                                  an EOL character signifies the end of the bind.
+
+
+# open terminal, blazingly fast compared to iTerm/Hyper
+# cmd - return : open -na /Applications/iTerm.app
+
+# close focused window
+alt - w : /Users/cweed/.homebrew/bin/chunkc tiling::window --close
+
+# focus window
+alt - h : /Users/cweed/.homebrew/bin/chunkc tiling::window --focus west
+alt - j : /Users/cweed/.homebrew/bin/chunkc tiling::window --focus south
+alt - k : /Users/cweed/.homebrew/bin/chunkc tiling::window --focus north
+alt - l : /Users/cweed/.homebrew/bin/chunkc tiling::window --focus east
+
+cmd - j : /Users/cweed/.homebrew/bin/chunkc tiling::window --focus prev
+cmd - k : /Users/cweed/.homebrew/bin/chunkc tiling::window --focus next
+
+# equalize size of windows
+shift + alt - 0 : /Users/cweed/.homebrew/bin/chunkc tiling::desktop --equalize
+
+# swap window
+shift + alt - h : /Users/cweed/.homebrew/bin/chunkc tiling::window --swap west
+shift + alt - j : /Users/cweed/.homebrew/bin/chunkc tiling::window --swap south
+shift + alt - k : /Users/cweed/.homebrew/bin/chunkc tiling::window --swap north
+shift + alt - l : /Users/cweed/.homebrew/bin/chunkc tiling::window --swap east
+
+# move window
+shift + cmd - h : /Users/cweed/.homebrew/bin/chunkc tiling::window --warp west
+shift + cmd - j : /Users/cweed/.homebrew/bin/chunkc tiling::window --warp south
+shift + cmd - k : /Users/cweed/.homebrew/bin/chunkc tiling::window --warp north
+shift + cmd - l : /Users/cweed/.homebrew/bin/chunkc tiling::window --warp east
+
+# move floating windows / windows on a floating space
+shift + alt - up     : /Users/cweed/.homebrew/bin/chunkc tiling::window --warp-floating fullscreen
+shift + alt - left   : /Users/cweed/.homebrew/bin/chunkc tiling::window --warp-floating left
+shift + alt - right  : /Users/cweed/.homebrew/bin/chunkc tiling::window --warp-floating right
+shift + cmd - left   : /Users/cweed/.homebrew/bin/chunkc tiling::window --warp-floating top-left
+shift + cmd - right  : /Users/cweed/.homebrew/bin/chunkc tiling::window --warp-floating top-right
+shift + ctrl - left  : /Users/cweed/.homebrew/bin/chunkc tiling::window --warp-floating bottom-left
+shift + ctrl - right : /Users/cweed/.homebrew/bin/chunkc tiling::window --warp-floating bottom-right
+
+# send window to desktop
+shift + alt - x : /Users/cweed/.homebrew/bin/chunkc tiling::window --send-to-desktop $(/Users/cweed/.homebrew/bin/chunkc get _last_active_desktop)
+shift + alt - z : /Users/cweed/.homebrew/bin/chunkc tiling::window --send-to-desktop prev
+shift + alt - c : /Users/cweed/.homebrew/bin/chunkc tiling::window --send-to-desktop next
+shift + alt - 1 : /Users/cweed/.homebrew/bin/chunkc tiling::window --send-to-desktop 1
+shift + alt - 2 : /Users/cweed/.homebrew/bin/chunkc tiling::window --send-to-desktop 2
+shift + alt - 3 : /Users/cweed/.homebrew/bin/chunkc tiling::window --send-to-desktop 3
+shift + alt - 4 : /Users/cweed/.homebrew/bin/chunkc tiling::window --send-to-desktop 4
+shift + alt - 5 : /Users/cweed/.homebrew/bin/chunkc tiling::window --send-to-desktop 5
+shift + alt - 6 : /Users/cweed/.homebrew/bin/chunkc tiling::window --send-to-desktop 6
+
+# focus monitor
+ctrl + alt - z  : /Users/cweed/.homebrew/bin/chunkc tiling::monitor -f prev
+ctrl + alt - c  : /Users/cweed/.homebrew/bin/chunkc tiling::monitor -f next
+ctrl + alt - 1  : /Users/cweed/.homebrew/bin/chunkc tiling::monitor -f 1
+ctrl + alt - 2  : /Users/cweed/.homebrew/bin/chunkc tiling::monitor -f 2
+ctrl + alt - 3  : /Users/cweed/.homebrew/bin/chunkc tiling::monitor -f 3
+
+# send window to monitor and follow focus
+ctrl + cmd - z  : /Users/cweed/.homebrew/bin/chunkc tiling::window --send-to-monitor prev; /Users/cweed/.homebrew/bin/chunkc tiling::monitor -f prev
+ctrl + cmd - c  : /Users/cweed/.homebrew/bin/chunkc tiling::window --send-to-monitor next; /Users/cweed/.homebrew/bin/chunkc tiling::monitor -f next
+ctrl + cmd - 1  : /Users/cweed/.homebrew/bin/chunkc tiling::window --send-to-monitor 1; /Users/cweed/.homebrew/bin/chunkc tiling::monitor -f 1
+ctrl + cmd - 2  : /Users/cweed/.homebrew/bin/chunkc tiling::window --send-to-monitor 2; /Users/cweed/.homebrew/bin/chunkc tiling::monitor -f 2
+ctrl + cmd - 3  : /Users/cweed/.homebrew/bin/chunkc tiling::window --send-to-monitor 3; /Users/cweed/.homebrew/bin/chunkc tiling::monitor -f 3
+
+# increase region size
+shift + alt - a : /Users/cweed/.homebrew/bin/chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge west
+shift + alt - s : /Users/cweed/.homebrew/bin/chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge south
+shift + alt - w : /Users/cweed/.homebrew/bin/chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge north
+shift + alt - d : /Users/cweed/.homebrew/bin/chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge east
+
+# decrease region size
+shift + cmd - a : /Users/cweed/.homebrew/bin/chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge west
+shift + cmd - s : /Users/cweed/.homebrew/bin/chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge south
+shift + cmd - w : /Users/cweed/.homebrew/bin/chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge north
+shift + cmd - d : /Users/cweed/.homebrew/bin/chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge east
+
+# set insertion point for focused container
+ctrl + alt - f : /Users/cweed/.homebrew/bin/chunkc tiling::window --use-insertion-point cancel
+ctrl + alt - h : /Users/cweed/.homebrew/bin/chunkc tiling::window --use-insertion-point west
+ctrl + alt - j : /Users/cweed/.homebrew/bin/chunkc tiling::window --use-insertion-point south
+ctrl + alt - k : /Users/cweed/.homebrew/bin/chunkc tiling::window --use-insertion-point north
+ctrl + alt - l : /Users/cweed/.homebrew/bin/chunkc tiling::window --use-insertion-point east
+
+# rotate tree
+alt - r : /Users/cweed/.homebrew/bin/chunkc tiling::desktop --rotate 90
+
+# mirror tree y-axis
+alt - y : /Users/cweed/.homebrew/bin/chunkc tiling::desktop --mirror vertical
+
+# mirror tree x-axis
+alt - x : /Users/cweed/.homebrew/bin/chunkc tiling::desktop --mirror horizontal
+
+# toggle desktop offset
+alt - a : /Users/cweed/.homebrew/bin/chunkc tiling::desktop --toggle offset
+
+# toggle window fullscreen
+alt - f : /Users/cweed/.homebrew/bin/chunkc tiling::window --toggle fullscreen
+
+# toggle window native fullscreen
+shift + alt - f : /Users/cweed/.homebrew/bin/chunkc tiling::window --toggle native-fullscreen
+
+# toggle window parent zoom
+alt - d : /Users/cweed/.homebrew/bin/chunkc tiling::window --toggle parent
+
+# toggle window split type
+alt - e : /Users/cweed/.homebrew/bin/chunkc tiling::window --toggle split
+
+# float / unfloat window
+alt - t : /Users/cweed/.homebrew/bin/chunkc tiling::window --toggle float
+
+# toggle sticky, float and resize to picture-in-picture size
+alt - s : /Users/cweed/.homebrew/bin/chunkc tiling::window --toggle sticky;\
+          /Users/cweed/.homebrew/bin/chunkc tiling::window --warp-floating pip-right
+
+# float next window to be tiled
+shift + alt - t : /Users/cweed/.homebrew/bin/chunkc set window_float_next 1
+
+# change layout of desktop
+ctrl + alt - a : /Users/cweed/.homebrew/bin/chunkc tiling::desktop --layout bsp
+ctrl + alt - s : /Users/cweed/.homebrew/bin/chunkc tiling::desktop --layout monocle
+ctrl + alt - d : /Users/cweed/.homebrew/bin/chunkc tiling::desktop --layout float
+
+ctrl + alt - w : /Users/cweed/.homebrew/bin/chunkc tiling::desktop --deserialize ~/.chunkwm_layouts/dev_1
