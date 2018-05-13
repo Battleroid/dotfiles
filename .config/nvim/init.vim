@@ -13,14 +13,17 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
 " Completion, lint, etc
-Plug 'roxma/nvim-completion-manager'
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-Plug 'junegunn/goyo.vim', {' for': ['markdown', 'text'] }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-jedi'
+Plug 'zchee/deoplete-go'
 Plug 'davidhalter/jedi-vim'
-Plug 'roxma/ncm-rct-complete'
 Plug 'plasticboy/vim-markdown'
 Plug 'rodjek/vim-puppet'
 Plug 'lepture/vim-jinja'
+Plug 'vim-python/python-syntax'
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'junegunn/goyo.vim', {' for': ['markdown', 'text'] }
+Plug 'godlygeek/tabular'
 
 " Color
 Plug 'fenetikm/falcon'
@@ -40,7 +43,6 @@ set nu
 set scrolloff=4
 set shiftwidth=4
 set smarttab
-" set smartindent
 set autoindent
 set tabstop=4
 set wildmenu
@@ -68,6 +70,7 @@ set updatetime=100
 
 " Colorscheme related
 let g:gruvbox_italic = 1
+let &t_ut='' " fixes weird issue in kitty with background erasing, see their readme
 colorscheme gruvbox
 set background=dark
 set cursorline
@@ -87,22 +90,25 @@ let g:lightline = {
     \ }
 
 " Misc autocmds
-autocmd FileType markdown,text setlocal spell linebreak
+autocmd FileType markdown,text setlocal spell linebreak nocursorcolumn
 autocmd FileType ruby setlocal sw=2 ts=2 expandtab
 autocmd FileType json,yaml setlocal sw=2 ts=2
 autocmd BufRead,BufNewFile,BufWritePre *.conf setlocal sw=2 ts=2 expandtab syntax=conf smartindent
 autocmd BufRead,BufNewFile,BufWritePre Dockerfile,Dockerfile.tmpl setlocal ft=Dockerfile expandtab
 autocmd BufRead,BufNewFile,BufWritePre notes setlocal ft=markdown
+autocmd BufRead,BufNewFile,BufWritePre Jenkinsfile setlocal ft=groovy
 
 " Completion
-set shortmess+=c
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
-
-" use current env python 2/3 interpreter, fix later
-let g:python_support_python2_venv = 0
-let g:python_support_python3_venv = 0
+let g:vim_markdown_frontmatter = 1
+let g:python_highlight_all = 1
+let g:jedi#completions_enabled = 0
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_completion_start_length = 0
+" call deoplete#custom#option('sources', {
+" \ '_': ['omni', 'buffer', 'member', 'tag', 'file']
+" \ })
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " Go
 let g:go_highlight_functions = 1
